@@ -5,17 +5,18 @@ class Config:
     """Configuration settings for the project"""
     def __init__(self):
         # Set up directories
-        self.BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        self.BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # src directory
+        self.ROOT_DIR = os.path.dirname(self.BASE_DIR)  # root directory of the repo
         self.create_directories()
 
         # Data source
         self.DATA_URL = 'https://raw.githubusercontent.com/dsrscientist/DSData/master/happiness_score_dataset.csv'
 
-        # Directories
-        self.MODEL_DIR = os.path.join(self.BASE_DIR, 'models')
-        self.RESULTS_DIR = os.path.join(self.BASE_DIR, 'results')
-        self.LOGS_DIR = os.path.join(self.BASE_DIR, 'logs')
-        self.DATA_DIR = os.path.join(self.BASE_DIR, 'data')
+        # Directories at root level
+        self.DATA_DIR = os.path.join(self.ROOT_DIR, 'data')
+        self.MODEL_DIR = os.path.join(self.ROOT_DIR, 'models')
+        self.RESULTS_DIR = os.path.join(self.ROOT_DIR, 'results')
+        self.LOGS_DIR = os.path.join(self.ROOT_DIR, 'logs')
 
         # File paths
         self.LOG_FILE = os.path.join(
@@ -84,9 +85,10 @@ class Config:
 
     def create_directories(self):
         """Create necessary directories if they don't exist"""
-        directories = ['models', 'results', 'logs', 'data']
-        for directory in directories:
-            dir_path = os.path.join(self.BASE_DIR, directory)
+        # Create all directories in root
+        root_directories = ['data', 'models', 'results', 'logs']
+        for directory in root_directories:
+            dir_path = os.path.join(self.ROOT_DIR, directory)
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path)
 
@@ -96,17 +98,23 @@ if __name__ == "__main__":
     config = Config()
     print("Configuration Settings:")
     print("-" * 50)
-    print(f"\nBase Directory: {config.BASE_DIR}")
+    print("\nDirectories:")
+    print(f"Root Directory: {config.ROOT_DIR}")
+    print(f"Source Directory: {config.BASE_DIR}")
+    print(f"Data Directory: {config.DATA_DIR}")
     print(f"Models Directory: {config.MODEL_DIR}")
     print(f"Results Directory: {config.RESULTS_DIR}")
     print(f"Logs Directory: {config.LOGS_DIR}")
-    print(f"Data Directory: {config.DATA_DIR}")
+    
     print("\nData Processing Parameters:")
     print(f"Random State: {config.RANDOM_STATE}")
     print(f"Test Size: {config.TEST_SIZE}")
     print(f"Z-Score Threshold: {config.Z_SCORE_THRESHOLD}")
+    
     print("\nFeatures to Transform:")
     print(f"Box-Cox: {config.FEATURES_TO_TRANSFORM['box_cox']}")
     print(f"Cube Root: {config.FEATURES_TO_TRANSFORM['cube_root']}")
+    
     print("\nOutlier Indices to Remove:")
     print(f"Indices: {config.OUTLIER_INDICES}")
+    
