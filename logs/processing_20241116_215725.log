@@ -1,0 +1,24 @@
+2024-11-16 21:57:25,920 - happiness_score - INFO - Loading data from URL...
+2024-11-16 21:57:26,144 - happiness_score - INFO - Data loaded successfully. Shape: (158, 12)
+2024-11-16 21:57:26,144 - happiness_score - INFO - Starting initial data cleaning...
+2024-11-16 21:57:26,145 - happiness_score - INFO - Removed 5 columns
+2024-11-16 21:57:26,147 - happiness_score - INFO - Removed 0 duplicate rows
+2024-11-16 21:57:26,148 - happiness_score - INFO - Removed 0 rows with missing values
+2024-11-16 21:57:26,148 - happiness_score - INFO - Removed 6 outlier rows
+2024-11-16 21:57:26,148 - happiness_score - INFO - Original shape: (158, 12)
+2024-11-16 21:57:26,149 - happiness_score - INFO - Cleaned shape: (152, 7)
+2024-11-16 21:57:26,149 - happiness_score - INFO - Removed 6 rows in total
+2024-11-16 21:57:26,149 - happiness_score - INFO - Validating data...
+2024-11-16 21:57:26,150 - happiness_score - INFO - Data types:
+Happiness Score                  float64
+Economy (GDP per Capita)         float64
+Family                           float64
+Health (Life Expectancy)         float64
+Freedom                          float64
+Trust (Government Corruption)    float64
+Generosity                       float64
+dtype: object
+2024-11-16 21:57:26,164 - happiness_score - INFO - Data statistics calculated
+2024-11-16 21:57:26,165 - happiness_score - INFO - Saving cleaned data to /workspaces/happiness_prediction/data/clean_data.csv
+2024-11-16 21:57:26,167 - happiness_score - INFO - Data saved successfully
+2024-11-16 21:57:26,167 - happiness_score - INFO - Data loading, cleaning, and saving completed successfully
