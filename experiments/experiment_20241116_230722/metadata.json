@@ -1,0 +1,38 @@
+{
+    "timestamp": "20241116_230722",
+    "experiment_dir": "/workspaces/happiness_prediction/experiments/experiment_20241116_230722",
+    "data_shape": [
+        152,
+        7
+    ],
+    "feature_names": [
+        "Economy (GDP per Capita)",
+        "Family",
+        "Health (Life Expectancy)",
+        "Freedom",
+        "Trust (Government Corruption)",
+        "Generosity",
+        "Happiness Score"
+    ],
+    "preprocessing_stats": {
+        "initial_shape": [
+            152,
+            7
+        ],
+        "final_shape": [
+            152,
+            7
+        ],
+        "removed_rows": 0,
+        "features": [
+            "Economy (GDP per Capita)",
+            "Family",
+            "Health (Life Expectancy)",
+            "Freedom",
+            "Trust (Government Corruption)",
+            "Generosity"
+        ]
+    },
+    "best_model": "RandomForest",
+    "best_model_r2": 0.6726917462494345
+}
