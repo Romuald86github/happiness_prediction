@@ -1,0 +1,8 @@
+2024-11-16 22:29:41,891 - happiness_score - INFO - Loading clean data from /workspaces/happiness_prediction/data/clean_data.csv
+2024-11-16 22:29:41,893 - happiness_score - INFO - Clean data loaded successfully. Shape: (152, 7)
+2024-11-16 22:29:41,894 - happiness_score - INFO - Fitting preprocessing pipeline...
+2024-11-16 22:29:41,904 - happiness_score - INFO - Pipeline fitting completed
+2024-11-16 22:29:41,904 - happiness_score - INFO - Transforming data...
+2024-11-16 22:29:41,906 - happiness_score - INFO - Data transformation completed
+2024-11-16 22:29:41,911 - happiness_score - INFO - Pipeline saved to /workspaces/happiness_prediction/models/preprocessing_pipeline.pkl
+2024-11-16 22:29:41,911 - happiness_score - ERROR - Error saving preprocessed data: 'Config' object has no attribute 'PREPROCESSED_DATA_PATH'

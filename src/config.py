@@ -35,6 +35,10 @@ class Config:
             self.DATA_DIR,
             'clean_data.csv'
         )
+        self.PREPROCESSED_DATA_PATH = os.path.join(
+            self.DATA_DIR,
+            'preprocessed_data.csv'
+        )
 
         # Data processing parameters
         self.RANDOM_STATE = 42
@@ -106,6 +110,11 @@ if __name__ == "__main__":
     print(f"Results Directory: {config.RESULTS_DIR}")
     print(f"Logs Directory: {config.LOGS_DIR}")
     
+    print("\nFile Paths:")
+    print(f"Clean Data Path: {config.CLEAN_DATA_PATH}")
+    print(f"Preprocessed Data Path: {config.PREPROCESSED_DATA_PATH}")
+    print(f"Model Pipeline Path: {config.MODEL_PIPELINE_PATH}")
+    
     print("\nData Processing Parameters:")
     print(f"Random State: {config.RANDOM_STATE}")
     print(f"Test Size: {config.TEST_SIZE}")
@@ -117,4 +126,3 @@ if __name__ == "__main__":
     
     print("\nOutlier Indices to Remove:")
     print(f"Indices: {config.OUTLIER_INDICES}")
-    
