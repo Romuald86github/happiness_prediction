@@ -1,0 +1,61 @@
+2024-11-16 23:02:55,101 - happiness_score - INFO - Model artifacts loaded successfully
+2024-11-16 23:02:55,102 - happiness_score - INFO - Loading data from URL...
+2024-11-16 23:02:55,102 - happiness_score - INFO - Loading data from URL...
+2024-11-16 23:02:55,117 - happiness_score - INFO - Data loaded successfully. Shape: (158, 12)
+2024-11-16 23:02:55,117 - happiness_score - INFO - Data loaded successfully. Shape: (158, 12)
+2024-11-16 23:02:55,117 - happiness_score - INFO - Starting initial data cleaning...
+2024-11-16 23:02:55,117 - happiness_score - INFO - Starting initial data cleaning...
+2024-11-16 23:02:55,118 - happiness_score - INFO - Removed 5 columns
+2024-11-16 23:02:55,118 - happiness_score - INFO - Removed 5 columns
+2024-11-16 23:02:55,120 - happiness_score - INFO - Removed 0 duplicate rows
+2024-11-16 23:02:55,120 - happiness_score - INFO - Removed 0 duplicate rows
+2024-11-16 23:02:55,121 - happiness_score - INFO - Removed 0 rows with missing values
+2024-11-16 23:02:55,121 - happiness_score - INFO - Removed 0 rows with missing values
+2024-11-16 23:02:55,122 - happiness_score - INFO - Removed 6 outlier rows
+2024-11-16 23:02:55,122 - happiness_score - INFO - Removed 6 outlier rows
+2024-11-16 23:02:55,122 - happiness_score - INFO - Original shape: (158, 12)
+2024-11-16 23:02:55,122 - happiness_score - INFO - Original shape: (158, 12)
+2024-11-16 23:02:55,122 - happiness_score - INFO - Cleaned shape: (152, 7)
+2024-11-16 23:02:55,122 - happiness_score - INFO - Cleaned shape: (152, 7)
+2024-11-16 23:02:55,123 - happiness_score - INFO - Removed 6 rows in total
+2024-11-16 23:02:55,123 - happiness_score - INFO - Removed 6 rows in total
+2024-11-16 23:02:55,123 - happiness_score - INFO - Validating data...
+2024-11-16 23:02:55,123 - happiness_score - INFO - Validating data...
+2024-11-16 23:02:55,125 - happiness_score - INFO - Data types:
+Happiness Score                  float64
+Economy (GDP per Capita)         float64
+Family                           float64
+Health (Life Expectancy)         float64
+Freedom                          float64
+Trust (Government Corruption)    float64
+Generosity                       float64
+dtype: object
+2024-11-16 23:02:55,125 - happiness_score - INFO - Data types:
+Happiness Score                  float64
+Economy (GDP per Capita)         float64
+Family                           float64
+Health (Life Expectancy)         float64
+Freedom                          float64
+Trust (Government Corruption)    float64
+Generosity                       float64
+dtype: object
+2024-11-16 23:02:55,140 - happiness_score - INFO - Data statistics calculated
+2024-11-16 23:02:55,140 - happiness_score - INFO - Data statistics calculated
+2024-11-16 23:02:55,140 - happiness_score - INFO - Saving cleaned data to /workspaces/happiness_prediction/data/clean_data.csv
+2024-11-16 23:02:55,140 - happiness_score - INFO - Saving cleaned data to /workspaces/happiness_prediction/data/clean_data.csv
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data saved successfully
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data saved successfully
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data loading, cleaning, and saving completed successfully
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data loading, cleaning, and saving completed successfully
+2024-11-16 23:02:55,144 - happiness_score - INFO - Transforming data...
+2024-11-16 23:02:55,144 - happiness_score - INFO - Transforming data...
+2024-11-16 23:02:55,147 - happiness_score - INFO - Data transformation completed
+2024-11-16 23:02:55,147 - happiness_score - INFO - Data transformation completed
+2024-11-16 23:02:55,147 - happiness_score - ERROR - Error making prediction: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- Happiness Score
+
+2024-11-16 23:02:55,147 - happiness_score - ERROR - Error making prediction: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- Happiness Score
+

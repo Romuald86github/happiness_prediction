@@ -1,0 +1,441 @@
+2024-11-16 23:02:35,346 - happiness_score - INFO - Starting experiment in directory: /workspaces/happiness_prediction/experiments/experiment_20241116_230235
+2024-11-16 23:02:35,346 - happiness_score - INFO - Loading data...
+2024-11-16 23:02:35,346 - happiness_score - INFO - Loading data from URL...
+2024-11-16 23:02:35,346 - happiness_score - INFO - Loading data from URL...
+2024-11-16 23:02:35,506 - happiness_score - INFO - Data loaded successfully. Shape: (158, 12)
+2024-11-16 23:02:35,506 - happiness_score - INFO - Data loaded successfully. Shape: (158, 12)
+2024-11-16 23:02:35,507 - happiness_score - INFO - Starting initial data cleaning...
+2024-11-16 23:02:35,507 - happiness_score - INFO - Starting initial data cleaning...
+2024-11-16 23:02:35,508 - happiness_score - INFO - Removed 5 columns
+2024-11-16 23:02:35,508 - happiness_score - INFO - Removed 5 columns
+2024-11-16 23:02:35,509 - happiness_score - INFO - Removed 0 duplicate rows
+2024-11-16 23:02:35,509 - happiness_score - INFO - Removed 0 duplicate rows
+2024-11-16 23:02:35,510 - happiness_score - INFO - Removed 0 rows with missing values
+2024-11-16 23:02:35,510 - happiness_score - INFO - Removed 0 rows with missing values
+2024-11-16 23:02:35,511 - happiness_score - INFO - Removed 6 outlier rows
+2024-11-16 23:02:35,511 - happiness_score - INFO - Removed 6 outlier rows
+2024-11-16 23:02:35,511 - happiness_score - INFO - Original shape: (158, 12)
+2024-11-16 23:02:35,511 - happiness_score - INFO - Original shape: (158, 12)
+2024-11-16 23:02:35,511 - happiness_score - INFO - Cleaned shape: (152, 7)
+2024-11-16 23:02:35,511 - happiness_score - INFO - Cleaned shape: (152, 7)
+2024-11-16 23:02:35,511 - happiness_score - INFO - Removed 6 rows in total
+2024-11-16 23:02:35,511 - happiness_score - INFO - Removed 6 rows in total
+2024-11-16 23:02:35,511 - happiness_score - INFO - Validating data...
+2024-11-16 23:02:35,511 - happiness_score - INFO - Validating data...
+2024-11-16 23:02:35,512 - happiness_score - INFO - Data types:
+Happiness Score                  float64
+Economy (GDP per Capita)         float64
+Family                           float64
+Health (Life Expectancy)         float64
+Freedom                          float64
+Trust (Government Corruption)    float64
+Generosity                       float64
+dtype: object
+2024-11-16 23:02:35,512 - happiness_score - INFO - Data types:
+Happiness Score                  float64
+Economy (GDP per Capita)         float64
+Family                           float64
+Health (Life Expectancy)         float64
+Freedom                          float64
+Trust (Government Corruption)    float64
+Generosity                       float64
+dtype: object
+2024-11-16 23:02:35,532 - happiness_score - INFO - Data statistics calculated
+2024-11-16 23:02:35,532 - happiness_score - INFO - Data statistics calculated
+2024-11-16 23:02:35,532 - happiness_score - INFO - Saving cleaned data to /workspaces/happiness_prediction/data/clean_data.csv
+2024-11-16 23:02:35,532 - happiness_score - INFO - Saving cleaned data to /workspaces/happiness_prediction/data/clean_data.csv
+2024-11-16 23:02:35,534 - happiness_score - INFO - Data saved successfully
+2024-11-16 23:02:35,534 - happiness_score - INFO - Data saved successfully
+2024-11-16 23:02:35,534 - happiness_score - INFO - Data loading, cleaning, and saving completed successfully
+2024-11-16 23:02:35,534 - happiness_score - INFO - Data loading, cleaning, and saving completed successfully
+2024-11-16 23:02:35,535 - happiness_score - INFO - Data loaded successfully. Shape: (152, 7)
+2024-11-16 23:02:35,535 - happiness_score - INFO - Data loaded successfully. Shape: (152, 7)
+2024-11-16 23:02:35,535 - happiness_score - INFO - Preprocessing data...
+2024-11-16 23:02:35,535 - happiness_score - INFO - Preprocessing data...
+2024-11-16 23:02:35,535 - happiness_score - INFO - Fitting preprocessing pipeline...
+2024-11-16 23:02:35,535 - happiness_score - INFO - Fitting preprocessing pipeline...
+2024-11-16 23:02:35,535 - happiness_score - INFO - Fitting preprocessing pipeline...
+2024-11-16 23:02:35,546 - happiness_score - INFO - Pipeline fitting completed
+2024-11-16 23:02:35,546 - happiness_score - INFO - Pipeline fitting completed
+2024-11-16 23:02:35,546 - happiness_score - INFO - Pipeline fitting completed
+2024-11-16 23:02:35,546 - happiness_score - INFO - Transforming data...
+2024-11-16 23:02:35,546 - happiness_score - INFO - Transforming data...
+2024-11-16 23:02:35,546 - happiness_score - INFO - Transforming data...
+2024-11-16 23:02:35,548 - happiness_score - INFO - Data transformation completed
+2024-11-16 23:02:35,548 - happiness_score - INFO - Data transformation completed
+2024-11-16 23:02:35,548 - happiness_score - INFO - Data transformation completed
+2024-11-16 23:02:35,549 - happiness_score - INFO - Pipeline saved to /workspaces/happiness_prediction/models/preprocessing_pipeline.pkl
+2024-11-16 23:02:35,549 - happiness_score - INFO - Pipeline saved to /workspaces/happiness_prediction/models/preprocessing_pipeline.pkl
+2024-11-16 23:02:35,549 - happiness_score - INFO - Pipeline saved to /workspaces/happiness_prediction/models/preprocessing_pipeline.pkl
+2024-11-16 23:02:35,549 - happiness_score - INFO - Data preprocessed. Final shape: (152, 7)
+2024-11-16 23:02:35,549 - happiness_score - INFO - Data preprocessed. Final shape: (152, 7)
+2024-11-16 23:02:35,549 - happiness_score - INFO - Data preprocessed. Final shape: (152, 7)
+2024-11-16 23:02:35,550 - happiness_score - INFO - Features prepared. X shape: (152, 6), y shape: (152,)
+2024-11-16 23:02:35,550 - happiness_score - INFO - Features prepared. X shape: (152, 6), y shape: (152,)
+2024-11-16 23:02:35,550 - happiness_score - INFO - Features prepared. X shape: (152, 6), y shape: (152,)
+2024-11-16 23:02:35,550 - happiness_score - INFO - 
+Training models...
+2024-11-16 23:02:35,550 - happiness_score - INFO - 
+Training models...
+2024-11-16 23:02:35,550 - happiness_score - INFO - 
+Training models...
+2024-11-16 23:02:35,550 - happiness_score - INFO - Starting model training...
+2024-11-16 23:02:35,550 - happiness_score - INFO - Starting model training...
+2024-11-16 23:02:35,550 - happiness_score - INFO - Starting model training...
+2024-11-16 23:02:35,550 - happiness_score - INFO - Starting model training...
+2024-11-16 23:02:35,552 - happiness_score - INFO - 
+Training LinearRegression...
+2024-11-16 23:02:35,552 - happiness_score - INFO - 
+Training LinearRegression...
+2024-11-16 23:02:35,552 - happiness_score - INFO - 
+Training LinearRegression...
+2024-11-16 23:02:35,552 - happiness_score - INFO - 
+Training LinearRegression...
+2024-11-16 23:02:37,067 - happiness_score - INFO - 
+Results for LinearRegression:
+2024-11-16 23:02:37,067 - happiness_score - INFO - 
+Results for LinearRegression:
+2024-11-16 23:02:37,067 - happiness_score - INFO - 
+Results for LinearRegression:
+2024-11-16 23:02:37,067 - happiness_score - INFO - 
+Results for LinearRegression:
+2024-11-16 23:02:37,068 - happiness_score - INFO - Best Parameters: {'fit_intercept': True}
+2024-11-16 23:02:37,068 - happiness_score - INFO - Best Parameters: {'fit_intercept': True}
+2024-11-16 23:02:37,068 - happiness_score - INFO - Best Parameters: {'fit_intercept': True}
+2024-11-16 23:02:37,068 - happiness_score - INFO - Best Parameters: {'fit_intercept': True}
+2024-11-16 23:02:37,069 - happiness_score - INFO - Train R2: 0.8233
+2024-11-16 23:02:37,069 - happiness_score - INFO - Train R2: 0.8233
+2024-11-16 23:02:37,069 - happiness_score - INFO - Train R2: 0.8233
+2024-11-16 23:02:37,069 - happiness_score - INFO - Train R2: 0.8233
+2024-11-16 23:02:37,069 - happiness_score - INFO - Test R2: 0.6487
+2024-11-16 23:02:37,069 - happiness_score - INFO - Test R2: 0.6487
+2024-11-16 23:02:37,069 - happiness_score - INFO - Test R2: 0.6487
+2024-11-16 23:02:37,069 - happiness_score - INFO - Test R2: 0.6487
+2024-11-16 23:02:37,069 - happiness_score - INFO - Train RMSE: 0.4870
+2024-11-16 23:02:37,069 - happiness_score - INFO - Train RMSE: 0.4870
+2024-11-16 23:02:37,069 - happiness_score - INFO - Train RMSE: 0.4870
+2024-11-16 23:02:37,069 - happiness_score - INFO - Train RMSE: 0.4870
+2024-11-16 23:02:37,069 - happiness_score - INFO - Test RMSE: 0.6612
+2024-11-16 23:02:37,069 - happiness_score - INFO - Test RMSE: 0.6612
+2024-11-16 23:02:37,069 - happiness_score - INFO - Test RMSE: 0.6612
+2024-11-16 23:02:37,069 - happiness_score - INFO - Test RMSE: 0.6612
+2024-11-16 23:02:37,070 - happiness_score - INFO - CV Score: 0.7987 (+/- 0.1838)
+2024-11-16 23:02:37,070 - happiness_score - INFO - CV Score: 0.7987 (+/- 0.1838)
+2024-11-16 23:02:37,070 - happiness_score - INFO - CV Score: 0.7987 (+/- 0.1838)
+2024-11-16 23:02:37,070 - happiness_score - INFO - CV Score: 0.7987 (+/- 0.1838)
+2024-11-16 23:02:37,070 - happiness_score - INFO - 
+Training Ridge...
+2024-11-16 23:02:37,070 - happiness_score - INFO - 
+Training Ridge...
+2024-11-16 23:02:37,070 - happiness_score - INFO - 
+Training Ridge...
+2024-11-16 23:02:37,070 - happiness_score - INFO - 
+Training Ridge...
+2024-11-16 23:02:37,221 - happiness_score - INFO - 
+Results for Ridge:
+2024-11-16 23:02:37,221 - happiness_score - INFO - 
+Results for Ridge:
+2024-11-16 23:02:37,221 - happiness_score - INFO - 
+Results for Ridge:
+2024-11-16 23:02:37,221 - happiness_score - INFO - 
+Results for Ridge:
+2024-11-16 23:02:37,221 - happiness_score - INFO - Best Parameters: {'alpha': 10.0, 'fit_intercept': True}
+2024-11-16 23:02:37,221 - happiness_score - INFO - Best Parameters: {'alpha': 10.0, 'fit_intercept': True}
+2024-11-16 23:02:37,221 - happiness_score - INFO - Best Parameters: {'alpha': 10.0, 'fit_intercept': True}
+2024-11-16 23:02:37,221 - happiness_score - INFO - Best Parameters: {'alpha': 10.0, 'fit_intercept': True}
+2024-11-16 23:02:37,222 - happiness_score - INFO - Train R2: 0.8218
+2024-11-16 23:02:37,222 - happiness_score - INFO - Train R2: 0.8218
+2024-11-16 23:02:37,222 - happiness_score - INFO - Train R2: 0.8218
+2024-11-16 23:02:37,222 - happiness_score - INFO - Train R2: 0.8218
+2024-11-16 23:02:37,222 - happiness_score - INFO - Test R2: 0.6473
+2024-11-16 23:02:37,222 - happiness_score - INFO - Test R2: 0.6473
+2024-11-16 23:02:37,222 - happiness_score - INFO - Test R2: 0.6473
+2024-11-16 23:02:37,222 - happiness_score - INFO - Test R2: 0.6473
+2024-11-16 23:02:37,222 - happiness_score - INFO - Train RMSE: 0.4891
+2024-11-16 23:02:37,222 - happiness_score - INFO - Train RMSE: 0.4891
+2024-11-16 23:02:37,222 - happiness_score - INFO - Train RMSE: 0.4891
+2024-11-16 23:02:37,222 - happiness_score - INFO - Train RMSE: 0.4891
+2024-11-16 23:02:37,222 - happiness_score - INFO - Test RMSE: 0.6625
+2024-11-16 23:02:37,222 - happiness_score - INFO - Test RMSE: 0.6625
+2024-11-16 23:02:37,222 - happiness_score - INFO - Test RMSE: 0.6625
+2024-11-16 23:02:37,222 - happiness_score - INFO - Test RMSE: 0.6625
+2024-11-16 23:02:37,222 - happiness_score - INFO - CV Score: 0.8011 (+/- 0.1806)
+2024-11-16 23:02:37,222 - happiness_score - INFO - CV Score: 0.8011 (+/- 0.1806)
+2024-11-16 23:02:37,222 - happiness_score - INFO - CV Score: 0.8011 (+/- 0.1806)
+2024-11-16 23:02:37,222 - happiness_score - INFO - CV Score: 0.8011 (+/- 0.1806)
+2024-11-16 23:02:37,222 - happiness_score - INFO - 
+Training Lasso...
+2024-11-16 23:02:37,222 - happiness_score - INFO - 
+Training Lasso...
+2024-11-16 23:02:37,222 - happiness_score - INFO - 
+Training Lasso...
+2024-11-16 23:02:37,222 - happiness_score - INFO - 
+Training Lasso...
+2024-11-16 23:02:37,382 - happiness_score - INFO - 
+Results for Lasso:
+2024-11-16 23:02:37,382 - happiness_score - INFO - 
+Results for Lasso:
+2024-11-16 23:02:37,382 - happiness_score - INFO - 
+Results for Lasso:
+2024-11-16 23:02:37,382 - happiness_score - INFO - 
+Results for Lasso:
+2024-11-16 23:02:37,383 - happiness_score - INFO - Best Parameters: {'alpha': 0.1, 'fit_intercept': True}
+2024-11-16 23:02:37,383 - happiness_score - INFO - Best Parameters: {'alpha': 0.1, 'fit_intercept': True}
+2024-11-16 23:02:37,383 - happiness_score - INFO - Best Parameters: {'alpha': 0.1, 'fit_intercept': True}
+2024-11-16 23:02:37,383 - happiness_score - INFO - Best Parameters: {'alpha': 0.1, 'fit_intercept': True}
+2024-11-16 23:02:37,383 - happiness_score - INFO - Train R2: 0.8056
+2024-11-16 23:02:37,383 - happiness_score - INFO - Train R2: 0.8056
+2024-11-16 23:02:37,383 - happiness_score - INFO - Train R2: 0.8056
+2024-11-16 23:02:37,383 - happiness_score - INFO - Train R2: 0.8056
+2024-11-16 23:02:37,383 - happiness_score - INFO - Test R2: 0.6402
+2024-11-16 23:02:37,383 - happiness_score - INFO - Test R2: 0.6402
+2024-11-16 23:02:37,383 - happiness_score - INFO - Test R2: 0.6402
+2024-11-16 23:02:37,383 - happiness_score - INFO - Test R2: 0.6402
+2024-11-16 23:02:37,384 - happiness_score - INFO - Train RMSE: 0.5108
+2024-11-16 23:02:37,384 - happiness_score - INFO - Train RMSE: 0.5108
+2024-11-16 23:02:37,384 - happiness_score - INFO - Train RMSE: 0.5108
+2024-11-16 23:02:37,384 - happiness_score - INFO - Train RMSE: 0.5108
+2024-11-16 23:02:37,384 - happiness_score - INFO - Test RMSE: 0.6692
+2024-11-16 23:02:37,384 - happiness_score - INFO - Test RMSE: 0.6692
+2024-11-16 23:02:37,384 - happiness_score - INFO - Test RMSE: 0.6692
+2024-11-16 23:02:37,384 - happiness_score - INFO - Test RMSE: 0.6692
+2024-11-16 23:02:37,384 - happiness_score - INFO - CV Score: 0.7854 (+/- 0.1463)
+2024-11-16 23:02:37,384 - happiness_score - INFO - CV Score: 0.7854 (+/- 0.1463)
+2024-11-16 23:02:37,384 - happiness_score - INFO - CV Score: 0.7854 (+/- 0.1463)
+2024-11-16 23:02:37,384 - happiness_score - INFO - CV Score: 0.7854 (+/- 0.1463)
+2024-11-16 23:02:37,385 - happiness_score - INFO - 
+Training RandomForest...
+2024-11-16 23:02:37,385 - happiness_score - INFO - 
+Training RandomForest...
+2024-11-16 23:02:37,385 - happiness_score - INFO - 
+Training RandomForest...
+2024-11-16 23:02:37,385 - happiness_score - INFO - 
+Training RandomForest...
+2024-11-16 23:02:50,070 - happiness_score - INFO - 
+Results for RandomForest:
+2024-11-16 23:02:50,070 - happiness_score - INFO - 
+Results for RandomForest:
+2024-11-16 23:02:50,070 - happiness_score - INFO - 
+Results for RandomForest:
+2024-11-16 23:02:50,070 - happiness_score - INFO - 
+Results for RandomForest:
+2024-11-16 23:02:50,070 - happiness_score - INFO - Best Parameters: {'max_depth': 10, 'min_samples_split': 5, 'n_estimators': 200}
+2024-11-16 23:02:50,070 - happiness_score - INFO - Best Parameters: {'max_depth': 10, 'min_samples_split': 5, 'n_estimators': 200}
+2024-11-16 23:02:50,070 - happiness_score - INFO - Best Parameters: {'max_depth': 10, 'min_samples_split': 5, 'n_estimators': 200}
+2024-11-16 23:02:50,070 - happiness_score - INFO - Best Parameters: {'max_depth': 10, 'min_samples_split': 5, 'n_estimators': 200}
+2024-11-16 23:02:50,070 - happiness_score - INFO - Train R2: 0.9538
+2024-11-16 23:02:50,070 - happiness_score - INFO - Train R2: 0.9538
+2024-11-16 23:02:50,070 - happiness_score - INFO - Train R2: 0.9538
+2024-11-16 23:02:50,070 - happiness_score - INFO - Train R2: 0.9538
+2024-11-16 23:02:50,070 - happiness_score - INFO - Test R2: 0.6727
+2024-11-16 23:02:50,070 - happiness_score - INFO - Test R2: 0.6727
+2024-11-16 23:02:50,070 - happiness_score - INFO - Test R2: 0.6727
+2024-11-16 23:02:50,070 - happiness_score - INFO - Test R2: 0.6727
+2024-11-16 23:02:50,070 - happiness_score - INFO - Train RMSE: 0.2491
+2024-11-16 23:02:50,070 - happiness_score - INFO - Train RMSE: 0.2491
+2024-11-16 23:02:50,070 - happiness_score - INFO - Train RMSE: 0.2491
+2024-11-16 23:02:50,070 - happiness_score - INFO - Train RMSE: 0.2491
+2024-11-16 23:02:50,071 - happiness_score - INFO - Test RMSE: 0.6382
+2024-11-16 23:02:50,071 - happiness_score - INFO - Test RMSE: 0.6382
+2024-11-16 23:02:50,071 - happiness_score - INFO - Test RMSE: 0.6382
+2024-11-16 23:02:50,071 - happiness_score - INFO - Test RMSE: 0.6382
+2024-11-16 23:02:50,071 - happiness_score - INFO - CV Score: 0.7771 (+/- 0.1707)
+2024-11-16 23:02:50,071 - happiness_score - INFO - CV Score: 0.7771 (+/- 0.1707)
+2024-11-16 23:02:50,071 - happiness_score - INFO - CV Score: 0.7771 (+/- 0.1707)
+2024-11-16 23:02:50,071 - happiness_score - INFO - CV Score: 0.7771 (+/- 0.1707)
+2024-11-16 23:02:50,071 - happiness_score - INFO - 
+Training GradientBoosting...
+2024-11-16 23:02:50,071 - happiness_score - INFO - 
+Training GradientBoosting...
+2024-11-16 23:02:50,071 - happiness_score - INFO - 
+Training GradientBoosting...
+2024-11-16 23:02:50,071 - happiness_score - INFO - 
+Training GradientBoosting...
+2024-11-16 23:02:54,999 - happiness_score - INFO - 
+Results for GradientBoosting:
+2024-11-16 23:02:54,999 - happiness_score - INFO - 
+Results for GradientBoosting:
+2024-11-16 23:02:54,999 - happiness_score - INFO - 
+Results for GradientBoosting:
+2024-11-16 23:02:54,999 - happiness_score - INFO - 
+Results for GradientBoosting:
+2024-11-16 23:02:55,000 - happiness_score - INFO - Best Parameters: {'learning_rate': 0.01, 'max_depth': 3, 'n_estimators': 200}
+2024-11-16 23:02:55,000 - happiness_score - INFO - Best Parameters: {'learning_rate': 0.01, 'max_depth': 3, 'n_estimators': 200}
+2024-11-16 23:02:55,000 - happiness_score - INFO - Best Parameters: {'learning_rate': 0.01, 'max_depth': 3, 'n_estimators': 200}
+2024-11-16 23:02:55,000 - happiness_score - INFO - Best Parameters: {'learning_rate': 0.01, 'max_depth': 3, 'n_estimators': 200}
+2024-11-16 23:02:55,000 - happiness_score - INFO - Train R2: 0.9020
+2024-11-16 23:02:55,000 - happiness_score - INFO - Train R2: 0.9020
+2024-11-16 23:02:55,000 - happiness_score - INFO - Train R2: 0.9020
+2024-11-16 23:02:55,000 - happiness_score - INFO - Train R2: 0.9020
+2024-11-16 23:02:55,000 - happiness_score - INFO - Test R2: 0.6569
+2024-11-16 23:02:55,000 - happiness_score - INFO - Test R2: 0.6569
+2024-11-16 23:02:55,000 - happiness_score - INFO - Test R2: 0.6569
+2024-11-16 23:02:55,000 - happiness_score - INFO - Test R2: 0.6569
+2024-11-16 23:02:55,000 - happiness_score - INFO - Train RMSE: 0.3627
+2024-11-16 23:02:55,000 - happiness_score - INFO - Train RMSE: 0.3627
+2024-11-16 23:02:55,000 - happiness_score - INFO - Train RMSE: 0.3627
+2024-11-16 23:02:55,000 - happiness_score - INFO - Train RMSE: 0.3627
+2024-11-16 23:02:55,000 - happiness_score - INFO - Test RMSE: 0.6534
+2024-11-16 23:02:55,000 - happiness_score - INFO - Test RMSE: 0.6534
+2024-11-16 23:02:55,000 - happiness_score - INFO - Test RMSE: 0.6534
+2024-11-16 23:02:55,000 - happiness_score - INFO - Test RMSE: 0.6534
+2024-11-16 23:02:55,001 - happiness_score - INFO - CV Score: 0.7375 (+/- 0.1394)
+2024-11-16 23:02:55,001 - happiness_score - INFO - CV Score: 0.7375 (+/- 0.1394)
+2024-11-16 23:02:55,001 - happiness_score - INFO - CV Score: 0.7375 (+/- 0.1394)
+2024-11-16 23:02:55,001 - happiness_score - INFO - CV Score: 0.7375 (+/- 0.1394)
+2024-11-16 23:02:55,001 - happiness_score - INFO - 
+Best Model: RandomForest
+2024-11-16 23:02:55,001 - happiness_score - INFO - 
+Best Model: RandomForest
+2024-11-16 23:02:55,001 - happiness_score - INFO - 
+Best Model: RandomForest
+2024-11-16 23:02:55,001 - happiness_score - INFO - 
+Best Model: RandomForest
+2024-11-16 23:02:55,001 - happiness_score - INFO - Test R2 Score: 0.6727
+2024-11-16 23:02:55,001 - happiness_score - INFO - Test R2 Score: 0.6727
+2024-11-16 23:02:55,001 - happiness_score - INFO - Test R2 Score: 0.6727
+2024-11-16 23:02:55,001 - happiness_score - INFO - Test R2 Score: 0.6727
+2024-11-16 23:02:55,001 - happiness_score - INFO - 
+Saving experiment results...
+2024-11-16 23:02:55,001 - happiness_score - INFO - 
+Saving experiment results...
+2024-11-16 23:02:55,001 - happiness_score - INFO - 
+Saving experiment results...
+2024-11-16 23:02:55,001 - happiness_score - INFO - 
+Saving experiment results...
+2024-11-16 23:02:55,010 - happiness_score - INFO - Experiment results saved to /workspaces/happiness_prediction/experiments/experiment_20241116_230235
+2024-11-16 23:02:55,010 - happiness_score - INFO - Experiment results saved to /workspaces/happiness_prediction/experiments/experiment_20241116_230235
+2024-11-16 23:02:55,010 - happiness_score - INFO - Experiment results saved to /workspaces/happiness_prediction/experiments/experiment_20241116_230235
+2024-11-16 23:02:55,010 - happiness_score - INFO - Experiment results saved to /workspaces/happiness_prediction/experiments/experiment_20241116_230235
+2024-11-16 23:02:55,066 - happiness_score - INFO - Model saved to /workspaces/happiness_prediction/models/best_model.pkl
+2024-11-16 23:02:55,066 - happiness_score - INFO - Model saved to /workspaces/happiness_prediction/models/best_model.pkl
+2024-11-16 23:02:55,066 - happiness_score - INFO - Model saved to /workspaces/happiness_prediction/models/best_model.pkl
+2024-11-16 23:02:55,066 - happiness_score - INFO - Model saved to /workspaces/happiness_prediction/models/best_model.pkl
+2024-11-16 23:02:55,066 - happiness_score - INFO - Experiment completed successfully
+2024-11-16 23:02:55,066 - happiness_score - INFO - Experiment completed successfully
+2024-11-16 23:02:55,066 - happiness_score - INFO - Experiment completed successfully
+2024-11-16 23:02:55,066 - happiness_score - INFO - Experiment completed successfully
+2024-11-16 23:02:55,101 - happiness_score - INFO - Model artifacts loaded successfully
+2024-11-16 23:02:55,101 - happiness_score - INFO - Model artifacts loaded successfully
+2024-11-16 23:02:55,101 - happiness_score - INFO - Model artifacts loaded successfully
+2024-11-16 23:02:55,101 - happiness_score - INFO - Model artifacts loaded successfully
+2024-11-16 23:02:55,102 - happiness_score - INFO - Loading data from URL...
+2024-11-16 23:02:55,102 - happiness_score - INFO - Loading data from URL...
+2024-11-16 23:02:55,102 - happiness_score - INFO - Loading data from URL...
+2024-11-16 23:02:55,102 - happiness_score - INFO - Loading data from URL...
+2024-11-16 23:02:55,117 - happiness_score - INFO - Data loaded successfully. Shape: (158, 12)
+2024-11-16 23:02:55,117 - happiness_score - INFO - Data loaded successfully. Shape: (158, 12)
+2024-11-16 23:02:55,117 - happiness_score - INFO - Data loaded successfully. Shape: (158, 12)
+2024-11-16 23:02:55,117 - happiness_score - INFO - Data loaded successfully. Shape: (158, 12)
+2024-11-16 23:02:55,117 - happiness_score - INFO - Starting initial data cleaning...
+2024-11-16 23:02:55,117 - happiness_score - INFO - Starting initial data cleaning...
+2024-11-16 23:02:55,117 - happiness_score - INFO - Starting initial data cleaning...
+2024-11-16 23:02:55,117 - happiness_score - INFO - Starting initial data cleaning...
+2024-11-16 23:02:55,118 - happiness_score - INFO - Removed 5 columns
+2024-11-16 23:02:55,118 - happiness_score - INFO - Removed 5 columns
+2024-11-16 23:02:55,118 - happiness_score - INFO - Removed 5 columns
+2024-11-16 23:02:55,118 - happiness_score - INFO - Removed 5 columns
+2024-11-16 23:02:55,120 - happiness_score - INFO - Removed 0 duplicate rows
+2024-11-16 23:02:55,120 - happiness_score - INFO - Removed 0 duplicate rows
+2024-11-16 23:02:55,120 - happiness_score - INFO - Removed 0 duplicate rows
+2024-11-16 23:02:55,120 - happiness_score - INFO - Removed 0 duplicate rows
+2024-11-16 23:02:55,121 - happiness_score - INFO - Removed 0 rows with missing values
+2024-11-16 23:02:55,121 - happiness_score - INFO - Removed 0 rows with missing values
+2024-11-16 23:02:55,121 - happiness_score - INFO - Removed 0 rows with missing values
+2024-11-16 23:02:55,121 - happiness_score - INFO - Removed 0 rows with missing values
+2024-11-16 23:02:55,122 - happiness_score - INFO - Removed 6 outlier rows
+2024-11-16 23:02:55,122 - happiness_score - INFO - Removed 6 outlier rows
+2024-11-16 23:02:55,122 - happiness_score - INFO - Removed 6 outlier rows
+2024-11-16 23:02:55,122 - happiness_score - INFO - Removed 6 outlier rows
+2024-11-16 23:02:55,122 - happiness_score - INFO - Original shape: (158, 12)
+2024-11-16 23:02:55,122 - happiness_score - INFO - Original shape: (158, 12)
+2024-11-16 23:02:55,122 - happiness_score - INFO - Original shape: (158, 12)
+2024-11-16 23:02:55,122 - happiness_score - INFO - Original shape: (158, 12)
+2024-11-16 23:02:55,122 - happiness_score - INFO - Cleaned shape: (152, 7)
+2024-11-16 23:02:55,122 - happiness_score - INFO - Cleaned shape: (152, 7)
+2024-11-16 23:02:55,122 - happiness_score - INFO - Cleaned shape: (152, 7)
+2024-11-16 23:02:55,122 - happiness_score - INFO - Cleaned shape: (152, 7)
+2024-11-16 23:02:55,123 - happiness_score - INFO - Removed 6 rows in total
+2024-11-16 23:02:55,123 - happiness_score - INFO - Removed 6 rows in total
+2024-11-16 23:02:55,123 - happiness_score - INFO - Removed 6 rows in total
+2024-11-16 23:02:55,123 - happiness_score - INFO - Removed 6 rows in total
+2024-11-16 23:02:55,123 - happiness_score - INFO - Validating data...
+2024-11-16 23:02:55,123 - happiness_score - INFO - Validating data...
+2024-11-16 23:02:55,123 - happiness_score - INFO - Validating data...
+2024-11-16 23:02:55,123 - happiness_score - INFO - Validating data...
+2024-11-16 23:02:55,125 - happiness_score - INFO - Data types:
+Happiness Score                  float64
+Economy (GDP per Capita)         float64
+Family                           float64
+Health (Life Expectancy)         float64
+Freedom                          float64
+Trust (Government Corruption)    float64
+Generosity                       float64
+dtype: object
+2024-11-16 23:02:55,125 - happiness_score - INFO - Data types:
+Happiness Score                  float64
+Economy (GDP per Capita)         float64
+Family                           float64
+Health (Life Expectancy)         float64
+Freedom                          float64
+Trust (Government Corruption)    float64
+Generosity                       float64
+dtype: object
+2024-11-16 23:02:55,125 - happiness_score - INFO - Data types:
+Happiness Score                  float64
+Economy (GDP per Capita)         float64
+Family                           float64
+Health (Life Expectancy)         float64
+Freedom                          float64
+Trust (Government Corruption)    float64
+Generosity                       float64
+dtype: object
+2024-11-16 23:02:55,125 - happiness_score - INFO - Data types:
+Happiness Score                  float64
+Economy (GDP per Capita)         float64
+Family                           float64
+Health (Life Expectancy)         float64
+Freedom                          float64
+Trust (Government Corruption)    float64
+Generosity                       float64
+dtype: object
+2024-11-16 23:02:55,140 - happiness_score - INFO - Data statistics calculated
+2024-11-16 23:02:55,140 - happiness_score - INFO - Data statistics calculated
+2024-11-16 23:02:55,140 - happiness_score - INFO - Data statistics calculated
+2024-11-16 23:02:55,140 - happiness_score - INFO - Data statistics calculated
+2024-11-16 23:02:55,140 - happiness_score - INFO - Saving cleaned data to /workspaces/happiness_prediction/data/clean_data.csv
+2024-11-16 23:02:55,140 - happiness_score - INFO - Saving cleaned data to /workspaces/happiness_prediction/data/clean_data.csv
+2024-11-16 23:02:55,140 - happiness_score - INFO - Saving cleaned data to /workspaces/happiness_prediction/data/clean_data.csv
+2024-11-16 23:02:55,140 - happiness_score - INFO - Saving cleaned data to /workspaces/happiness_prediction/data/clean_data.csv
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data saved successfully
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data saved successfully
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data saved successfully
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data saved successfully
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data loading, cleaning, and saving completed successfully
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data loading, cleaning, and saving completed successfully
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data loading, cleaning, and saving completed successfully
+2024-11-16 23:02:55,143 - happiness_score - INFO - Data loading, cleaning, and saving completed successfully
+2024-11-16 23:02:55,144 - happiness_score - INFO - Transforming data...
+2024-11-16 23:02:55,144 - happiness_score - INFO - Transforming data...
+2024-11-16 23:02:55,144 - happiness_score - INFO - Transforming data...
+2024-11-16 23:02:55,144 - happiness_score - INFO - Transforming data...
+2024-11-16 23:02:55,147 - happiness_score - INFO - Data transformation completed
+2024-11-16 23:02:55,147 - happiness_score - INFO - Data transformation completed
+2024-11-16 23:02:55,147 - happiness_score - INFO - Data transformation completed
+2024-11-16 23:02:55,147 - happiness_score - INFO - Data transformation completed
+2024-11-16 23:02:55,147 - happiness_score - ERROR - Error making prediction: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- Happiness Score
+
+2024-11-16 23:02:55,147 - happiness_score - ERROR - Error making prediction: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- Happiness Score
+
+2024-11-16 23:02:55,147 - happiness_score - ERROR - Error making prediction: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- Happiness Score
+
+2024-11-16 23:02:55,147 - happiness_score - ERROR - Error making prediction: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- Happiness Score
+
