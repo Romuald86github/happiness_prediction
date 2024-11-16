@@ -39,6 +39,11 @@ class Config:
             self.DATA_DIR,
             'preprocessed_data.csv'
         )
+        self.MODEL_PATH = os.path.join(
+            self.MODEL_DIR,
+            'best_model.pkl'
+    )
+
 
         # Data processing parameters
         self.RANDOM_STATE = 42
