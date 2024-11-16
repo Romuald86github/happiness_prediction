@@ -17,11 +17,22 @@ class Config:
         self.MODEL_DIR = os.path.join(self.ROOT_DIR, 'models')
         self.RESULTS_DIR = os.path.join(self.ROOT_DIR, 'results')
         self.LOGS_DIR = os.path.join(self.ROOT_DIR, 'logs')
+        self.EXPERIMENTS_DIR = os.path.join(self.ROOT_DIR, 'experiments')
 
-        # File paths
-        self.LOG_FILE = os.path.join(
-            self.LOGS_DIR,
-            f'processing_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'
+        # File paths for data
+        self.CLEAN_DATA_PATH = os.path.join(
+            self.DATA_DIR,
+            'clean_data.csv'
+        )
+        self.PREPROCESSED_DATA_PATH = os.path.join(
+            self.DATA_DIR,
+            'preprocessed_data.csv'
+        )
+
+        # File paths for models and results
+        self.MODEL_PATH = os.path.join(
+            self.MODEL_DIR,
+            'best_model.pkl'
         )
         self.MODEL_PIPELINE_PATH = os.path.join(
             self.MODEL_DIR,
@@ -31,19 +42,12 @@ class Config:
             self.RESULTS_DIR,
             f'model_results_{datetime.now().strftime("%Y%m%d_%H%M%S")}.csv'
         )
-        self.CLEAN_DATA_PATH = os.path.join(
-            self.DATA_DIR,
-            'clean_data.csv'
-        )
-        self.PREPROCESSED_DATA_PATH = os.path.join(
-            self.DATA_DIR,
-            'preprocessed_data.csv'
-        )
-        self.MODEL_PATH = os.path.join(
-            self.MODEL_DIR,
-            'best_model.pkl'
-    )
 
+        # Logging configuration
+        self.LOG_FILE = os.path.join(
+            self.LOGS_DIR,
+            f'processing_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'
+        )
 
         # Data processing parameters
         self.RANDOM_STATE = 42
@@ -95,11 +99,17 @@ class Config:
     def create_directories(self):
         """Create necessary directories if they don't exist"""
         # Create all directories in root
-        root_directories = ['data', 'models', 'results', 'logs']
+        root_directories = ['data', 'models', 'results', 'logs', 'experiments']
         for directory in root_directories:
             dir_path = os.path.join(self.ROOT_DIR, directory)
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path)
+
+    def get_experiment_dir(self, timestamp=None):
+        """Get experiment directory path"""
+        if timestamp is None:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        return os.path.join(self.EXPERIMENTS_DIR, f'experiment_{timestamp}')
 
 
 if __name__ == "__main__":
@@ -107,6 +117,7 @@ if __name__ == "__main__":
     config = Config()
     print("Configuration Settings:")
     print("-" * 50)
+    
     print("\nDirectories:")
     print(f"Root Directory: {config.ROOT_DIR}")
     print(f"Source Directory: {config.BASE_DIR}")
@@ -114,16 +125,21 @@ if __name__ == "__main__":
     print(f"Models Directory: {config.MODEL_DIR}")
     print(f"Results Directory: {config.RESULTS_DIR}")
     print(f"Logs Directory: {config.LOGS_DIR}")
+    print(f"Experiments Directory: {config.EXPERIMENTS_DIR}")
     
     print("\nFile Paths:")
     print(f"Clean Data Path: {config.CLEAN_DATA_PATH}")
     print(f"Preprocessed Data Path: {config.PREPROCESSED_DATA_PATH}")
+    print(f"Model Path: {config.MODEL_PATH}")
     print(f"Model Pipeline Path: {config.MODEL_PIPELINE_PATH}")
+    print(f"Results Path: {config.RESULTS_PATH}")
+    print(f"Log File: {config.LOG_FILE}")
     
     print("\nData Processing Parameters:")
     print(f"Random State: {config.RANDOM_STATE}")
     print(f"Test Size: {config.TEST_SIZE}")
     print(f"Z-Score Threshold: {config.Z_SCORE_THRESHOLD}")
+    print(f"CV Folds: {config.CV_FOLDS}")
     
     print("\nFeatures to Transform:")
     print(f"Box-Cox: {config.FEATURES_TO_TRANSFORM['box_cox']}")
@@ -131,3 +147,7 @@ if __name__ == "__main__":
     
     print("\nOutlier Indices to Remove:")
     print(f"Indices: {config.OUTLIER_INDICES}")
+    
+    # Test experiment directory creation
+    exp_dir = config.get_experiment_dir()
+    print(f"\nSample Experiment Directory: {exp_dir}")
