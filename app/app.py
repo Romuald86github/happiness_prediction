@@ -50,7 +50,7 @@ app.logger.addHandler(handler)
 app.logger.setLevel(logging.INFO)
 
 # Set configuration
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'default-secret-key')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'DEFAULT_SECRET_KEY')
 app.config['MODEL_PATH'] = os.environ.get('MODEL_PATH', config.MODEL_PATH)
 app.config['PIPELINE_PATH'] = os.environ.get('PIPELINE_PATH', config.MODEL_PIPELINE_PATH)
 
