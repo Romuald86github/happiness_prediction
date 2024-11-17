@@ -1,0 +1,12 @@
+2024-11-17 19:53:45,673 - happiness_score - INFO - Loading clean data from /workspaces/happiness_prediction/data/clean_data.csv
+2024-11-17 19:53:45,678 - happiness_score - INFO - Clean data loaded successfully. Shape: (152, 7)
+2024-11-17 19:53:45,683 - happiness_score - INFO - Fitting preprocessing pipeline...
+2024-11-17 19:53:45,695 - happiness_score - INFO - Pipeline fitting completed
+2024-11-17 19:53:45,695 - happiness_score - INFO - Transforming data...
+2024-11-17 19:53:45,697 - happiness_score - INFO - Data transformation completed
+2024-11-17 19:53:45,701 - happiness_score - INFO - Saving pipeline to /workspaces/happiness_prediction/models/preprocessing_pipeline.pkl
+2024-11-17 19:53:45,702 - happiness_score - INFO - Pipeline saved successfully
+2024-11-17 19:53:45,702 - happiness_score - INFO - Saving preprocessed data to /workspaces/happiness_prediction/data/preprocessed_data.csv
+2024-11-17 19:53:45,706 - happiness_score - INFO - Preprocessed data saved successfully
+2024-11-17 19:53:45,724 - happiness_score - INFO - Transforming data...
+2024-11-17 19:53:45,725 - happiness_score - INFO - Data transformation completed
