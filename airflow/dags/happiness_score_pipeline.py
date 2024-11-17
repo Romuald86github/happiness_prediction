@@ -7,15 +7,15 @@ import sys
 from pathlib import Path
 
 # Add src directory to Python path
-PROJECT_ROOT = Path(__file__).parents[1]
-SRC_DIR = os.path.join(PROJECT_ROOT, 'src')
-sys.path.append(str(SRC_DIR))
+#PROJECT_ROOT = Path(__file__).parents[1]
+#SRC_DIR = os.path.join(PROJECT_ROOT, 'src')
+#sys.path.append(str(SRC_DIR))
 
-from config import Config
-from data_loader import DataLoader
-from preprocessing_pipeline import PreprocessingPipeline
-from model_trainer import ModelTrainer
-from main import ExperimentManager, PredictionPipeline
+from src.config import Config
+from src.data_loader import DataLoader
+from src.preprocessing_pipeline import PreprocessingPipeline
+from src.model_trainer import ModelTrainer
+from src.main import ExperimentManager, PredictionPipeline
 
 # Initialize config
 config = Config()
