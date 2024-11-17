@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happiness Score Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Happiness Score Predictor</h1>
+        
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+            <form id="predictionForm" class="space-y-4">
+                {% for feature in feature_names %}
+                <div class="form-group">
+                    <label for="{{ feature }}" class="block text-sm font-medium text-gray-700">
+                        {{ feature }}
+                    </label>
+                    <input 
+                        type="number" 
+                        step="0.01" 
+                        id="{{ feature }}" 
+                        name="{{ feature }}"
+                        class="form-input"
+                        required
+                    >
+                </div>
+                {% endfor %}
+                
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors">
+                    Predict
+                </button>
+            </form>
+            
+            <div id="result" class="hidden mt-6 p-4 bg-green-100 rounded">
+                <h2 class="text-lg font-semibold text-green-800">Prediction Result</h2>
+                <p class="mt-2">
+                    Predicted Happiness Score: 
+                    <span id="predictionValue" class="font-bold"></span>
+                </p>
+            </div>
+            
+            <div id="error" class="hidden mt-6 p-4 bg-red-100 rounded">
+                <p id="errorMessage" class="text-red-800"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
