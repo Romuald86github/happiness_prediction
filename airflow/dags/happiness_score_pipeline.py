@@ -12,7 +12,7 @@ from pathlib import Path
 #sys.path.append(str(SRC_DIR))
 
 
-PROJECT_ROOT = Path(__file__).parents[2]  # Two levels up to the project root
+PROJECT_ROOT = Path(__file__).resolve().parents[2]  # Two levels up to the project root
 SRC_DIR = PROJECT_ROOT / 'src'
 sys.path.insert(0, str(SRC_DIR))  # Ensure src is prioritized in the import path
 
