@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 # Add src directory to Python path
-PROJECT_ROOT = Path(__file__).parents[2]
+PROJECT_ROOT = Path(__file__).parents[1]
 #SRC_DIR = os.path.join(PROJECT_ROOT, 'src')
 #sys.path.append(str(SRC_DIR))
 sys.path.append(str(PROJECT_ROOT))
