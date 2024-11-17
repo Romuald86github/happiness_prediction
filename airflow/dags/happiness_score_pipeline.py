@@ -7,9 +7,9 @@ import sys
 from pathlib import Path
 
 # Add src directory to Python path
-#PROJECT_ROOT = Path(__file__).parents[1]
-#SRC_DIR = os.path.join(PROJECT_ROOT, 'src')
-#sys.path.append(str(SRC_DIR))
+PROJECT_ROOT = Path(__file__).parents[1]
+SRC_DIR = os.path.join(PROJECT_ROOT, 'src')
+sys.path.append(str(SRC_DIR))
 
 from src.config import Config
 from src.data_loader import DataLoader
