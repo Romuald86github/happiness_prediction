@@ -18,11 +18,13 @@ sys.path.insert(0, str(SRC_DIR))  # Ensure src is prioritized in the import path
 
 
 
-from src.config import Config
-from src.data_loader import DataLoader
-from src.preprocessing_pipeline import PreprocessingPipeline
-from src.model_trainer import ModelTrainer
-from src.main import ExperimentManager, PredictionPipeline
+
+
+from config import Config
+from data_loader import DataLoader
+from preprocessing_pipeline import PreprocessingPipeline
+from model_trainer import ModelTrainer
+from main import ExperimentManager, PredictionPipeline
 
 # Initialize config
 config = Config()
