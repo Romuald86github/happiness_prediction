@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 from scipy import stats
 import joblib
+import logging
+from pathlib import Path
 from config import Config
 from helpers import setup_logging
 
@@ -41,24 +43,25 @@ class PreprocessingPipeline:
                                 if col != self.config.TARGET_COLUMN]
             
             # Fit z-score parameters
-            X = df.drop(self.config.TARGET_COLUMN, axis=1)
+            X = df.drop(columns=[self.config.TARGET_COLUMN])
             for column in X.columns:
                 self.feature_means[column] = X[column].mean()
                 self.feature_stds[column] = X[column].std()
             
             # Fit Box-Cox parameters
             for column in self.config.FEATURES_TO_TRANSFORM['box_cox']:
-                # Add small constant to ensure positivity
-                min_val = X[column].min()
-                shift = abs(min_val) + 1 if min_val <= 0 else 0
-                data = X[column] + shift
-                
-                # Store both lambda and shift
-                transformed_data, lambda_param = stats.boxcox(data)
-                self.boxcox_lambdas[column] = {
-                    'lambda': lambda_param,
-                    'shift': shift
-                }
+                if column in X.columns:
+                    # Add small constant to ensure positivity
+                    min_val = X[column].min()
+                    shift = abs(min_val) + 1 if min_val <= 0 else 0
+                    data = X[column] + shift
+                    
+                    # Store both lambda and shift
+                    transformed_data, lambda_param = stats.boxcox(data)
+                    self.boxcox_lambdas[column] = {
+                        'lambda': lambda_param,
+                        'shift': shift
+                    }
             
             self.logger.info("Pipeline fitting completed")
             
@@ -74,6 +77,11 @@ class PreprocessingPipeline:
         try:
             self.logger.info("Transforming data...")
             df_transformed = df.copy()
+            
+            # Verify all required features are present
+            missing_features = set(self.feature_names) - set(df_transformed.columns)
+            if missing_features:
+                raise ValueError(f"Missing features in input data: {missing_features}")
             
             # Handle features marked for Box-Cox
             for column in self.config.FEATURES_TO_TRANSFORM['box_cox']:
@@ -107,32 +115,37 @@ class PreprocessingPipeline:
             
     def fit_transform(self, df):
         """Fit pipeline and transform data"""
-        # Separate features and target
-        X = df.drop(self.config.TARGET_COLUMN, axis=1)
-        y = df[self.config.TARGET_COLUMN]
-        
-        # Fit pipeline
-        self.fit(df)
-        
-        # Transform features only
-        X_transformed = self.transform(X)
-        
-        # Recombine with untransformed target
-        transformed_df = pd.concat([X_transformed, y], axis=1)
-        
-        return transformed_df
+        try:
+            # Separate features and target
+            X = df.drop(columns=[self.config.TARGET_COLUMN])
+            y = df[self.config.TARGET_COLUMN]
+            
+            # Fit pipeline
+            self.fit(df)
+            
+            # Transform features only
+            X_transformed = self.transform(X)
+            
+            # Recombine with untransformed target
+            transformed_df = pd.concat([X_transformed, y], axis=1)
+            
+            return transformed_df
+            
+        except Exception as e:
+            self.logger.error(f"Error in fit_transform: {str(e)}")
+            raise
     
-    def save_pipeline(self):
-        """Save pipeline parameters"""
-        pipeline_data = {
-            'feature_means': self.feature_means,
-            'feature_stds': self.feature_stds,
-            'boxcox_lambdas': self.boxcox_lambdas,
-            'feature_names': self.feature_names
-        }
-        joblib.dump(pipeline_data, self.config.MODEL_PIPELINE_PATH)
-        self.logger.info(f"Pipeline saved to {self.config.MODEL_PIPELINE_PATH}")
-        
+    def save(self, path=None):
+        """Save pipeline object"""
+        try:
+            save_path = path or self.config.MODEL_PIPELINE_PATH
+            self.logger.info(f"Saving pipeline to {save_path}")
+            joblib.dump(self, save_path)
+            self.logger.info("Pipeline saved successfully")
+        except Exception as e:
+            self.logger.error(f"Error saving pipeline: {str(e)}")
+            raise
+    
     def save_preprocessed_data(self, df):
         """Save preprocessed data"""
         try:
@@ -145,14 +158,9 @@ class PreprocessingPipeline:
             raise
     
     @staticmethod
-    def load_pipeline(path):
-        """Load saved pipeline parameters"""
+    def load(path):
+        """Load saved pipeline"""
         return joblib.load(path)
-    
-    @staticmethod
-    def load_preprocessed_data(path):
-        """Load preprocessed data"""
-        return pd.read_csv(path)
 
 
 if __name__ == "__main__":
@@ -165,8 +173,8 @@ if __name__ == "__main__":
     # Fit and transform data
     transformed_df = pipeline.fit_transform(df)
     
-    # Save pipeline parameters and preprocessed data
-    pipeline.save_pipeline()
+    # Save pipeline and preprocessed data
+    pipeline.save()
     pipeline.save_preprocessed_data(transformed_df)
     
     # Print results

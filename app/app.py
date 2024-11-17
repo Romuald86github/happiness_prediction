@@ -12,15 +12,16 @@ from datetime import datetime
 import traceback
 
 # Set up project paths
-PROJECT_ROOT = Path(__file__).resolve().parents[1]  # Two levels up to the project root
+PROJECT_ROOT = Path(__file__).resolve().parents[1]  # Two levels up to project root
 SRC_DIR = PROJECT_ROOT / 'src'
 APP_DIR = PROJECT_ROOT / 'app'
 TEMPLATE_DIR = APP_DIR / 'templates'
 STATIC_DIR = APP_DIR / 'static'
 
-sys.path.insert(0, str(SRC_DIR))  # Ensure src is prioritized in the import path
+sys.path.insert(0, str(SRC_DIR))  # Ensure src is prioritized in import path
 
 from config import Config
+from preprocessing_pipeline import PreprocessingPipeline
 
 # Initialize Flask app with correct template and static folders
 app = Flask(__name__,
@@ -30,6 +31,7 @@ app = Flask(__name__,
 # Enable CORS
 CORS(app)
 
+# Load configuration
 config = Config()
 
 # Configure logging
@@ -48,7 +50,7 @@ app.logger.addHandler(handler)
 app.logger.setLevel(logging.INFO)
 
 # Set configuration
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'DEFAULT_SECRET_KEY')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'default-secret-key')
 app.config['MODEL_PATH'] = os.environ.get('MODEL_PATH', config.MODEL_PATH)
 app.config['PIPELINE_PATH'] = os.environ.get('PIPELINE_PATH', config.MODEL_PIPELINE_PATH)
 
@@ -56,13 +58,17 @@ def load_model_artifacts():
     """Load model and preprocessing pipeline"""
     try:
         app.logger.info("Loading model artifacts...")
-        app.logger.info(f"Model path: {app.config['MODEL_PATH']}")
-        app.logger.info(f"Pipeline path: {app.config['PIPELINE_PATH']}")
         
+        # Load model data
         model_data = joblib.load(app.config['MODEL_PATH'])
-        pipeline = joblib.load(app.config['PIPELINE_PATH'])
+        
+        # Load preprocessing pipeline
+        pipeline = PreprocessingPipeline.load(app.config['PIPELINE_PATH'])
         
         app.logger.info("Model artifacts loaded successfully")
+        app.logger.info(f"Model type: {type(model_data['model'])}")
+        app.logger.info(f"Pipeline type: {type(pipeline)}")
+        
         return model_data['model'], model_data['feature_names'], pipeline
     except Exception as e:
         app.logger.error(f"Error loading model artifacts: {str(e)}\n{traceback.format_exc()}")
@@ -73,22 +79,16 @@ def validate_input(data, feature_names):
     if not isinstance(data, dict):
         raise ValueError("Input must be a JSON object")
     
-    # Check for missing features
     missing_features = [feat for feat in feature_names if feat not in data]
     if missing_features:
         raise ValueError(f"Missing required features: {missing_features}")
     
-    # Validate feature values
     for feature in feature_names:
-        value = data.get(feature)
-        if value is None:
-            raise ValueError(f"Missing value for feature: {feature}")
         try:
-            float_value = float(value)
-            # Add basic range validation
-            if not (-1000 <= float_value <= 1000):
+            value = float(data[feature])
+            if not (-1000 <= value <= 1000):
                 raise ValueError(f"Value for {feature} is out of reasonable range")
-        except ValueError:
+        except (TypeError, ValueError):
             raise ValueError(f"Invalid value for feature: {feature}")
     
     return True
@@ -155,8 +155,11 @@ def predict():
         input_df = pd.DataFrame([{feature: float(data[feature]) 
                                 for feature in feature_names}])
         
-        # Preprocess data
-        processed_data = pipeline.transform(input_df)
+        app.logger.info(f"Input data shape: {input_df.shape}")
+        app.logger.info(f"Input features: {input_df.columns.tolist()}")
+        
+        # Transform data
+        processed_data = pipeline.transform(input_df, is_single_input=True)
         
         # Make prediction
         prediction = model.predict(processed_data)[0]
@@ -196,35 +199,19 @@ def model_info():
         'success': True,
         'feature_names': feature_names,
         'model_type': type(model).__name__,
-        'pipeline_steps': [str(step[0]) for step in pipeline.steps] if pipeline else None
+        'pipeline_steps': list(pipeline.feature_means.keys()) if pipeline else None
     })
 
 @app.errorhandler(404)
 def not_found_error(error):
-    """Handle 404 errors"""
     return render_template('error.html', 
                          error="Page not found"), 404
 
 @app.errorhandler(500)
 def internal_error(error):
-    """Handle internal server errors"""
     app.logger.error(f"Server error: {str(error)}\n{traceback.format_exc()}")
     return render_template('error.html', 
                          error="Internal server error"), 500
-
-@app.after_request
-def after_request(response):
-    """Log after each request"""
-    if request.path != '/health':  # Don't log health checks
-        app.logger.info(
-            f'{request.remote_addr} {request.method} {request.scheme} '
-            f'{request.full_path} {response.status}'
-        )
-    return response
-
-def create_app():
-    """Create and configure an instance of the Flask application."""
-    return app
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
