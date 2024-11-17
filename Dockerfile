@@ -10,15 +10,18 @@ RUN apt-get update && \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
+# Upgrade pip
+RUN pip install --no-cache-dir --upgrade pip
+
 # Install Python dependencies
 COPY requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /wheels -r requirements.txt
 
 # Final stage
 FROM python:3.9-slim
 
 # Create non-root user
-RUN useradd -m -u 1000 appuser && \
+RUN useradd -m appuser && \
     mkdir -p /app /app/logs /app/data /app/models && \
     chown -R appuser:appuser /app
 
@@ -31,12 +34,13 @@ RUN apt-get update && \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy wheels from builder
-COPY --from=builder /app/wheels /wheels
+# Copy wheels and requirements
+COPY --from=builder /wheels /wheels
 COPY --from=builder /app/requirements.txt .
 
 # Install dependencies
-RUN pip install --no-cache-dir /wheels/*
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir /wheels/*
 
 # Copy application
 COPY --chown=appuser:appuser . .
@@ -58,4 +62,4 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
 EXPOSE 5000
 
 # Run application
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "60", "--access-logfile", "-", "--error-logfile", "-", "app.app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "60", "app.app:app"]
