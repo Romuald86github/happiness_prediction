@@ -12,16 +12,14 @@ from datetime import datetime
 import traceback
 
 # Set up project paths
-#PROJECT_ROOT = Path(__file__).resolve().parents[1]  # Two levels up to project root
-#SRC_DIR = PROJECT_ROOT / 'src'
+PROJECT_ROOT = Path(__file__).resolve().parents[1]  # Two levels up to project root
+SRC_DIR = PROJECT_ROOT / 'src'
 APP_DIR = PROJECT_ROOT / 'app'
 TEMPLATE_DIR = APP_DIR / 'templates'
 STATIC_DIR = APP_DIR / 'static'
 
-#sys.path.insert(0, str(SRC_DIR))  # Ensure src is prioritized in import path
+sys.path.insert(0, str(SRC_DIR))  # Ensure src is prioritized in import path
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-sys.path.append(str(PROJECT_ROOT))
 
 
 from src.config import Config
