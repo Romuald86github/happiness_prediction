@@ -36,6 +36,9 @@ RUN mkdir -p \
     scripts \
     src
 
+# Create __init__.py in src directory
+RUN touch src/__init__.py
+
 # Copy project files maintaining structure
 COPY app/static/css/* app/static/css/
 COPY app/static/js/* app/static/js/
@@ -56,8 +59,12 @@ RUN chmod -R 755 /app \
     && chmod -R 777 /app/models \
     && chmod -R 777 /app/data
 
+# Install local package in development mode
+RUN pip install -e .
+
 # Verify critical imports and paths
 RUN python3 -c "import sys; \
+    print('Python path:', sys.path); \
     from src.preprocessing_pipeline import PreprocessingPipeline; \
     from src.model_trainer import ModelTrainer; \
     from app.app import app; \
