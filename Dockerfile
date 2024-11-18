@@ -1,12 +1,12 @@
 FROM python:3.9-slim
 
-ENV PYTHONDONTWRITEBYTECODE=1 \
+ENV PYTHONPATH=/app/src \
+    PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    FLASK_APP=/app/app/app.py \
-    FLASK_RUN_HOST=0.0.0.0 \
+    FLASK_APP=app/app.py \
+    FLASK_ENV=production \
     MODEL_PATH=/app/models/best_model.pkl \
-    PIPELINE_PATH=/app/models/preprocessing_pipeline.pkl \
-    PYTHONPATH=/app:/app/src
+    PIPELINE_PATH=/app/models/preprocessing_pipeline.pkl
 
 WORKDIR /app
 
@@ -15,19 +15,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-RUN groupadd -r appuser && useradd -r -g appuser appuser
-
-RUN mkdir -p /app/logs /app/models /app/data \
-    && chown -R appuser:appuser /app
-
-COPY --chown=appuser:appuser requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
-# Copy entire project structure
-COPY --chown=appuser:appuser . .
+COPY . .
 
-# Make sure preprocessing_pipeline.py is in PYTHONPATH
-RUN ln -s /app/src/preprocessing_pipeline.py /usr/local/lib/python3.9/site-packages/
+# Create necessary directories
+RUN mkdir -p /app/logs /app/models /app/data
+
+# Set permissions
+RUN groupadd -r appuser && useradd -r -g appuser appuser \
+    && chown -R appuser:appuser /app
 
 USER appuser
 
@@ -36,5 +34,4 @@ EXPOSE 5000
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:5000/health || exit 1
 
-# Start with preprocessing_pipeline in PYTHONPATH
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "120", "--pythonpath", "/app:/app/src", "app.app:app"]
+CMD ["python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--preload", "app.app:app"]
