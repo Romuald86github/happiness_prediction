@@ -18,10 +18,11 @@ APP_DIR = PROJECT_ROOT / 'app'
 TEMPLATE_DIR = APP_DIR / 'templates'
 STATIC_DIR = APP_DIR / 'static'
 
-sys.path.insert(0, str(SRC_DIR))  # Ensure src is prioritized in import path
+# Add src to Python path
+sys.path.insert(0, str(SRC_DIR))
 
-from config import Config
-from preprocessing_pipeline import PreprocessingPipeline
+from src.config import Config
+from src.preprocessing_pipeline import PreprocessingPipeline
 
 # Initialize Flask app with correct template and static folders
 app = Flask(__name__,
@@ -59,7 +60,13 @@ def load_model_artifacts():
     try:
         app.logger.info("Loading model artifacts...")
         
-        # Load model data
+        # Check if model files exist
+        if not os.path.exists(app.config['MODEL_PATH']):
+            raise FileNotFoundError(f"Model file not found at {app.config['MODEL_PATH']}")
+        if not os.path.exists(app.config['PIPELINE_PATH']):
+            raise FileNotFoundError(f"Pipeline file not found at {app.config['PIPELINE_PATH']}")
+            
+        # Load model
         model_data = joblib.load(app.config['MODEL_PATH'])
         
         # Load preprocessing pipeline
@@ -118,25 +125,30 @@ except Exception as e:
 @app.route('/health')
 def health_check():
     """Health check endpoint"""
-    status = 'healthy' if all([model, feature_names, pipeline]) else 'unhealthy'
-    return jsonify({
-        'status': status,
-        'timestamp': datetime.now().isoformat()
-    }), 200 if status == 'healthy' else 503
+    status = {
+        'status': 'healthy' if all([model, feature_names, pipeline]) else 'unhealthy',
+        'timestamp': datetime.now().isoformat(),
+        'model_loaded': model is not None,
+        'pipeline_loaded': pipeline is not None,
+        'features_available': feature_names is not None
+    }
+    return jsonify(status), 200 if status['status'] == 'healthy' else 503
 
 @app.route('/')
 def home():
     """Render home page"""
-    if feature_names is None:
-        return render_template('error.html', 
-                             error="Model not loaded"), 503
-    return render_template('index.html', 
-                         feature_names=feature_names)
+    try:
+        if feature_names is None:
+            raise ValueError("Model not loaded")
+        return render_template('index.html', feature_names=feature_names)
+    except Exception as e:
+        app.logger.error(f"Error in home route: {str(e)}")
+        return jsonify({'error': str(e)}), 503
 
 @app.route('/predict', methods=['POST'])
 def predict():
     """Make prediction based on input data"""
-    if model is None or pipeline is None:
+    if not all([model, pipeline, feature_names]):
         return jsonify({
             'success': False,
             'error': 'Model not loaded'
@@ -158,7 +170,7 @@ def predict():
         app.logger.info(f"Input data shape: {input_df.shape}")
         app.logger.info(f"Input features: {input_df.columns.tolist()}")
         
-        # Transform data
+        # Transform data using pipeline
         processed_data = pipeline.transform(input_df, is_single_input=True)
         
         # Make prediction
@@ -169,7 +181,8 @@ def predict():
         
         return jsonify({
             'success': True,
-            'prediction': round(float(prediction), 4)
+            'prediction': round(float(prediction), 4),
+            'message': 'Prediction successful'
         })
         
     except Exception as e:
@@ -189,7 +202,7 @@ def predict():
 @app.route('/model/info')
 def model_info():
     """Get model information"""
-    if model is None:
+    if not all([model, pipeline, feature_names]):
         return jsonify({
             'success': False,
             'error': 'Model not loaded'
@@ -199,19 +212,38 @@ def model_info():
         'success': True,
         'feature_names': feature_names,
         'model_type': type(model).__name__,
-        'pipeline_steps': list(pipeline.feature_means.keys()) if pipeline else None
+        'pipeline_steps': list(pipeline.feature_means.keys()) if pipeline else None,
+        'num_features': len(feature_names) if feature_names else 0
+    })
+
+@app.route('/model/features')
+def get_features():
+    """Get list of required features"""
+    if feature_names is None:
+        return jsonify({
+            'success': False,
+            'error': 'Model not loaded'
+        }), 503
+    
+    return jsonify({
+        'success': True,
+        'features': feature_names
     })
 
 @app.errorhandler(404)
 def not_found_error(error):
-    return render_template('error.html', 
-                         error="Page not found"), 404
+    return jsonify({
+        'success': False,
+        'error': 'Resource not found'
+    }), 404
 
 @app.errorhandler(500)
 def internal_error(error):
     app.logger.error(f"Server error: {str(error)}\n{traceback.format_exc()}")
-    return render_template('error.html', 
-                         error="Internal server error"), 500
+    return jsonify({
+        'success': False,
+        'error': 'Internal server error'
+    }), 500
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
