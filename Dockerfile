@@ -1,79 +1,56 @@
-# Base image
+# Use Python 3.9 slim base image
 FROM python:3.9-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1 \
+ENV PYTHONPATH=/app \
+    PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    FLASK_APP=app/app.py \
+    FLASK_APP=/app/app/app.py \
     FLASK_RUN_HOST=0.0.0.0 \
     MODEL_PATH=/app/models/best_model.pkl \
-    PIPELINE_PATH=/app/models/preprocessing_pipeline.pkl \
-    PYTHONPATH=/app
+    PIPELINE_PATH=/app/models/preprocessing_pipeline.pkl
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
-COPY requirements.txt .
+# Create app user
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+
+# Create necessary directories and set permissions
+RUN mkdir -p /app/logs /app/models /app/data \
+    && chown -R appuser:appuser /app
+
+# Copy requirements first to leverage Docker cache
+COPY --chown=appuser:appuser requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
-# Create all necessary directories
-RUN mkdir -p \
-    app/static/css \
-    app/static/js \
-    app/templates \
-    config \
-    data \
-    experiments \
-    logs \
-    models \
-    results \
-    scripts \
-    src
+# Copy project files
+COPY --chown=appuser:appuser . .
 
-# Create __init__.py in src directory
-RUN touch src/__init__.py
+# Verify directory structure and permissions
+RUN ls -la /app/src && \
+    python3 -c "import sys; sys.path.append('/app'); from src.preprocessing_pipeline import PreprocessingPipeline; print('Module imports verified')"
 
-# Copy project files maintaining structure
-COPY app/static/css/* app/static/css/
-COPY app/static/js/* app/static/js/
-COPY app/templates/* app/templates/
-COPY app/app.py app/
-COPY config/* config/
-COPY data/*.csv data/
-COPY models/*.pkl models/
-COPY src/* src/
-COPY scripts/* scripts/
+# Create volumes for persistent data
+VOLUME ["/app/models", "/app/data", "/app/logs"]
 
-# Create .gitignore to prevent __pycache__ issues
-RUN echo "**/__pycache__" > .gitignore
-
-# Set permissions
-RUN chmod -R 755 /app \
-    && chmod -R 777 /app/logs \
-    && chmod -R 777 /app/models \
-    && chmod -R 777 /app/data
-
-# Install local package in development mode
-#RUN pip install -e .
-
-# Verify critical imports and paths
-RUN python3 -c "import sys; \
-    print('Python path:', sys.path); \
-    from src.preprocessing_pipeline import PreprocessingPipeline; \
-    from src.model_trainer import ModelTrainer; \
-    from app.app import app; \
-    from src.config import Config; \
-    from src.helpers import setup_logging; \
-    print('All modules verified successfully')"
+# Switch to non-root user
+USER appuser
 
 # Expose port
 EXPOSE 5000
 
-# Start gunicorn
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:5000/health || exit 1
+
+# Start gunicorn server
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "120", "--preload", "app.app:app"]
