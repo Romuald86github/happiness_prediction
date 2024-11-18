@@ -1,21 +1,19 @@
 import os
 import zipfile
-import shutil
 
 def create_eb_zip():
-    # Create temp zip in current directory
-    temp_zip = 'eb_app.zip'
-    desktop_path = '/Users/romualdchristialtcheutchoua/Desktop/eb_app.zip'
+    # Save in current directory
+    output_path = 'eb_app.zip'
     
     files_to_zip = [
         'Dockerfile',
-        'requirements.txt',
+        'streamlit_requirements.txt',
         'streamlit_app/',
         'src/',
         'models/'
     ]
     
-    with zipfile.ZipFile(temp_zip, 'w') as zipf:
+    with zipfile.ZipFile(output_path, 'w') as zipf:
         for item in files_to_zip:
             if os.path.isfile(item):
                 zipf.write(item)
@@ -26,9 +24,7 @@ def create_eb_zip():
                         arcname = os.path.relpath(file_path, '.')
                         zipf.write(file_path, arcname)
     
-    # Move zip to desktop
-    shutil.move(temp_zip, desktop_path)
-    print(f"Created zip file at: {desktop_path}")
+    print(f"Created zip file: {os.path.abspath(output_path)}")
 
 if __name__ == "__main__":
     create_eb_zip()
