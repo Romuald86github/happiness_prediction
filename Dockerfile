@@ -60,7 +60,7 @@ RUN chmod -R 755 /app \
     && chmod -R 777 /app/data
 
 # Install local package in development mode
-RUN pip install -e .
+#RUN pip install -e .
 
 # Verify critical imports and paths
 RUN python3 -c "import sys; \
