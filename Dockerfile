@@ -2,13 +2,13 @@
 FROM python:3.9-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-ENV FLASK_APP=app/app.py
-ENV FLASK_RUN_HOST=0.0.0.0
-ENV MODEL_PATH=/app/models/best_model.pkl
-ENV PIPELINE_PATH=/app/models/preprocessing_pipeline.pkl
-ENV PYTHONPATH=/app
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    FLASK_APP=app/app.py \
+    FLASK_RUN_HOST=0.0.0.0 \
+    MODEL_PATH=/app/models/best_model.pkl \
+    PIPELINE_PATH=/app/models/preprocessing_pipeline.pkl \
+    PYTHONPATH=/app:/app/src
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -19,24 +19,30 @@ COPY requirements.txt /app/
 # Install dependencies and gunicorn
 RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
+# Create necessary directories
+RUN mkdir -p /app/logs /app/models
+
 # Copy the project files maintaining the structure
 COPY app /app/app
 COPY src /app/src
 COPY models /app/models
 COPY config /app/config
 
-# Create necessary directories
-RUN mkdir -p /app/logs
-
-# Create a startup script to ensure correct Python path
+# Create a startup script that ensures correct imports
 RUN echo '#!/bin/bash\n\
-export PYTHONPATH=/app\n\
 cd /app\n\
+python -c "\
+import sys; \
+sys.path.insert(0, \"/app\"); \
+sys.path.insert(0, \"/app/src\"); \
+from src.preprocessing_pipeline import PreprocessingPipeline; \
+print(\"PreprocessingPipeline imported successfully\")" && \
 exec gunicorn \
     --bind 0.0.0.0:5000 \
     --workers 4 \
     --timeout 120 \
     --preload \
+    --pythonpath /app:/app/src \
     "app.app:app"' > /app/start.sh && \
     chmod +x /app/start.sh
 
