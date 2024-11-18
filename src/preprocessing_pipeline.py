@@ -22,6 +22,9 @@ class PreprocessingPipeline:
         self.boxcox_lambdas = {}
         self.feature_names = None
         
+        # Set module name for proper pickling
+        self.__module__ = 'preprocessing_pipeline'
+        
     def load_clean_data(self):
         """Load the cleaned data"""
         try:
@@ -140,6 +143,10 @@ class PreprocessingPipeline:
         try:
             save_path = path or self.config.MODEL_PIPELINE_PATH
             self.logger.info(f"Saving pipeline to {save_path}")
+            
+            # Ensure module path is set correctly before saving
+            self.__module__ = 'preprocessing_pipeline'
+            
             joblib.dump(self, save_path)
             self.logger.info("Pipeline saved successfully")
         except Exception as e:
@@ -160,7 +167,9 @@ class PreprocessingPipeline:
     @staticmethod
     def load(path):
         """Load saved pipeline"""
-        return joblib.load(path)
+        loaded_pipeline = joblib.load(path)
+        loaded_pipeline.__module__ = 'preprocessing_pipeline'
+        return loaded_pipeline
 
 
 if __name__ == "__main__":

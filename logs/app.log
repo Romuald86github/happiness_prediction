@@ -1239,3 +1239,25 @@ AttributeError: Can't get attribute 'PreprocessingPipeline' on <module '__main__
 2024-11-18 13:29:31,351 - app - INFO - Loading model artifacts...
 2024-11-18 13:29:31,651 - app - INFO - Model artifacts loaded successfully
 2024-11-18 13:30:01,523 - app - INFO - Prediction log: {'timestamp': '2024-11-18T13:30:01.523093', 'input_data': {'Economy (GDP per Capita)': 0.01, 'Family': 0.01, 'Health (Life Expectancy)': 0.01, 'Freedom': 0.01, 'Trust (Government Corruption)': 0.01, 'Generosity': 0.01}, 'prediction': 3.4381875138888893, 'success': True, 'error': None, 'client_ip': '127.0.0.1'}
+2024-11-18 13:37:21,847 - app.app - INFO - Loading model artifacts...
+2024-11-18 13:37:22,033 - app.app - ERROR - Error loading model artifacts: Can't get attribute 'PreprocessingPipeline' on <module 'gunicorn.__main__' from '/usr/local/lib/python3.9/site-packages/gunicorn/__main__.py'>
+Traceback (most recent call last):
+  File "/app/app/app.py", line 56, in load_model_artifacts
+    pipeline = PreprocessingPipeline.load(app.config['PIPELINE_PATH'])
+  File "/app/app/../src/preprocessing_pipeline.py", line 163, in load
+    return joblib.load(path)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 658, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 577, in _unpickle
+    obj = unpickler.load()
+  File "/usr/local/lib/python3.9/pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "/usr/local/lib/python3.9/pickle.py", line 1537, in load_stack_global
+    self.append(self.find_class(module, name))
+  File "/usr/local/lib/python3.9/pickle.py", line 1581, in find_class
+    return _getattribute(sys.modules[module], name)[0]
+  File "/usr/local/lib/python3.9/pickle.py", line 331, in _getattribute
+    raise AttributeError("Can't get attribute {!r} on {!r}"
+AttributeError: Can't get attribute 'PreprocessingPipeline' on <module 'gunicorn.__main__' from '/usr/local/lib/python3.9/site-packages/gunicorn/__main__.py'>
+
+2024-11-18 13:37:22,033 - app.app - ERROR - Failed to load model artifacts: Can't get attribute 'PreprocessingPipeline' on <module 'gunicorn.__main__' from '/usr/local/lib/python3.9/site-packages/gunicorn/__main__.py'>
