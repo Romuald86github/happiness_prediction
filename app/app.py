@@ -1,8 +1,6 @@
 import os
 import sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../src'))
-from preprocessing_pipeline import PreprocessingPipeline
-
+from pathlib import Path
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import pandas as pd
@@ -10,10 +8,12 @@ import numpy as np
 import joblib
 import logging
 from logging.handlers import RotatingFileHandler
-from pathlib import Path
 from datetime import datetime
 import traceback
 
+# Add src to Python path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../src'))
+from preprocessing_pipeline import PreprocessingPipeline
 from config import Config
 
 # Initialize Flask app
@@ -52,10 +52,21 @@ def load_model_artifacts():
     """Load model and preprocessing pipeline"""
     try:
         app.logger.info("Loading model artifacts...")
+        
+        # Import preprocessing pipeline class
+        from src.preprocessing_pipeline import PreprocessingPipeline
+        
+        # Load model and pipeline
         model_data = joblib.load(app.config['MODEL_PATH'])
-        pipeline = PreprocessingPipeline.load(app.config['PIPELINE_PATH'])
+        pipeline = joblib.load(app.config['PIPELINE_PATH'])
+        
+        # Set module attribute after loading
+        pipeline.__class__.__module__ = 'src.preprocessing_pipeline'
         
         app.logger.info("Model artifacts loaded successfully")
+        app.logger.info(f"Model type: {type(model_data['model'])}")
+        app.logger.info(f"Pipeline type: {type(pipeline)}")
+        
         return model_data['model'], model_data['feature_names'], pipeline
     except Exception as e:
         app.logger.error(f"Error loading model artifacts: {str(e)}\n{traceback.format_exc()}")
