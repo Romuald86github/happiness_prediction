@@ -1,0 +1,58 @@
+2024-11-18 13:54:27,568 - happiness_score - INFO - Loading preprocessed data from /workspaces/happiness_prediction/data/preprocessed_data.csv
+2024-11-18 13:54:27,570 - happiness_score - INFO - Preprocessed data loaded successfully. Shape: (152, 7)
+2024-11-18 13:54:27,571 - happiness_score - INFO - Starting model training...
+2024-11-18 13:54:27,573 - happiness_score - INFO - 
+Training LinearRegression...
+2024-11-18 13:54:29,137 - happiness_score - INFO - 
+Results for LinearRegression:
+2024-11-18 13:54:29,137 - happiness_score - INFO - Best Parameters: {'fit_intercept': True}
+2024-11-18 13:54:29,137 - happiness_score - INFO - Train R2: 0.8233
+2024-11-18 13:54:29,137 - happiness_score - INFO - Test R2: 0.6487
+2024-11-18 13:54:29,137 - happiness_score - INFO - Train RMSE: 0.4870
+2024-11-18 13:54:29,137 - happiness_score - INFO - Test RMSE: 0.6612
+2024-11-18 13:54:29,137 - happiness_score - INFO - CV Score: 0.7987 (+/- 0.1838)
+2024-11-18 13:54:29,137 - happiness_score - INFO - 
+Training Ridge...
+2024-11-18 13:54:29,311 - happiness_score - INFO - 
+Results for Ridge:
+2024-11-18 13:54:29,311 - happiness_score - INFO - Best Parameters: {'alpha': 10.0, 'fit_intercept': True}
+2024-11-18 13:54:29,311 - happiness_score - INFO - Train R2: 0.8218
+2024-11-18 13:54:29,311 - happiness_score - INFO - Test R2: 0.6473
+2024-11-18 13:54:29,311 - happiness_score - INFO - Train RMSE: 0.4891
+2024-11-18 13:54:29,311 - happiness_score - INFO - Test RMSE: 0.6625
+2024-11-18 13:54:29,312 - happiness_score - INFO - CV Score: 0.8011 (+/- 0.1806)
+2024-11-18 13:54:29,312 - happiness_score - INFO - 
+Training Lasso...
+2024-11-18 13:54:29,467 - happiness_score - INFO - 
+Results for Lasso:
+2024-11-18 13:54:29,468 - happiness_score - INFO - Best Parameters: {'alpha': 0.1, 'fit_intercept': True}
+2024-11-18 13:54:29,468 - happiness_score - INFO - Train R2: 0.8056
+2024-11-18 13:54:29,468 - happiness_score - INFO - Test R2: 0.6402
+2024-11-18 13:54:29,468 - happiness_score - INFO - Train RMSE: 0.5108
+2024-11-18 13:54:29,468 - happiness_score - INFO - Test RMSE: 0.6692
+2024-11-18 13:54:29,468 - happiness_score - INFO - CV Score: 0.7854 (+/- 0.1463)
+2024-11-18 13:54:29,468 - happiness_score - INFO - 
+Training RandomForest...
+2024-11-18 13:54:42,268 - happiness_score - INFO - 
+Results for RandomForest:
+2024-11-18 13:54:42,268 - happiness_score - INFO - Best Parameters: {'max_depth': 10, 'min_samples_split': 5, 'n_estimators': 200}
+2024-11-18 13:54:42,268 - happiness_score - INFO - Train R2: 0.9538
+2024-11-18 13:54:42,268 - happiness_score - INFO - Test R2: 0.6727
+2024-11-18 13:54:42,268 - happiness_score - INFO - Train RMSE: 0.2491
+2024-11-18 13:54:42,268 - happiness_score - INFO - Test RMSE: 0.6382
+2024-11-18 13:54:42,268 - happiness_score - INFO - CV Score: 0.7771 (+/- 0.1707)
+2024-11-18 13:54:42,269 - happiness_score - INFO - 
+Training GradientBoosting...
+2024-11-18 13:54:47,173 - happiness_score - INFO - 
+Results for GradientBoosting:
+2024-11-18 13:54:47,173 - happiness_score - INFO - Best Parameters: {'learning_rate': 0.01, 'max_depth': 3, 'n_estimators': 200}
+2024-11-18 13:54:47,173 - happiness_score - INFO - Train R2: 0.9020
+2024-11-18 13:54:47,174 - happiness_score - INFO - Test R2: 0.6569
+2024-11-18 13:54:47,174 - happiness_score - INFO - Train RMSE: 0.3627
+2024-11-18 13:54:47,174 - happiness_score - INFO - Test RMSE: 0.6534
+2024-11-18 13:54:47,174 - happiness_score - INFO - CV Score: 0.7375 (+/- 0.1394)
+2024-11-18 13:54:47,174 - happiness_score - INFO - 
+Best Model: RandomForest
+2024-11-18 13:54:47,174 - happiness_score - INFO - Test R2 Score: 0.6727
+2024-11-18 13:54:47,251 - happiness_score - INFO - Model saved to /workspaces/happiness_prediction/models/best_model.pkl
+2024-11-18 13:54:47,256 - happiness_score - INFO - Results saved to /workspaces/happiness_prediction/results/model_results_20241118_135427.csv
