@@ -22,8 +22,8 @@ sys.path.insert(0, str(SRC_DIR))  # Ensure src is prioritized in import path
 
 
 
-from src.config import Config
-from src.preprocessing_pipeline import PreprocessingPipeline
+from config import Config
+from preprocessing_pipeline import PreprocessingPipeline
 
 # Initialize Flask app with correct template and static folders
 app = Flask(__name__,
