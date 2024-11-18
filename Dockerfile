@@ -1,24 +1,31 @@
-# Use an official Python runtime as the base image
+# Base image
 FROM python:3.9-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV FLASK_APP=app/app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV MODEL_PATH=/app/models/best_model.pkl
+ENV PIPELINE_PATH=/app/models/preprocessing_pipeline.pkl
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the application's requirements file to the container
+# Copy requirements file to the container
 COPY requirements.txt /app/
 
-# Install application dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies and gunicorn
+RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
-# Copy the entire application code to the container
+# Copy the rest of the application code to the container
 COPY . /app/
 
-# Expose the application port
+# Create necessary directories
+RUN mkdir -p logs data models
+
+# Expose the port that the Flask app will run on
 EXPOSE 5000
 
-# Command to run the app using Gunicorn
+# Command to run the application with gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "app.app:app"]
