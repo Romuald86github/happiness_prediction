@@ -18,11 +18,15 @@ COPY requirements.txt /app/
 # Install dependencies and gunicorn
 RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
-# Copy the rest of the application code to the container
-COPY . /app/
+# Create necessary directories first
+RUN mkdir -p /app/app/templates /app/app/static /app/logs /app/data /app/models
 
-# Create necessary directories
-RUN mkdir -p logs data models
+# Copy the application code and templates
+COPY app/app.py /app/app/
+COPY app/templates/ /app/app/templates/
+COPY app/static/ /app/app/static/
+COPY models/ /app/models/
+COPY src/ /app/src/
 
 # Expose the port that the Flask app will run on
 EXPOSE 5000
