@@ -1096,3 +1096,24 @@ Traceback (most recent call last):
 AttributeError: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
 
 2024-11-18 06:16:40,243 - app.app - ERROR - Failed to load model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+2024-11-18 10:19:41,531 - app - INFO - Loading model artifacts...
+2024-11-18 10:19:41,918 - app - INFO - Model artifacts loaded successfully
+2024-11-18 10:19:41,918 - app - INFO - Model type: <class 'sklearn.ensemble._forest.RandomForestRegressor'>
+2024-11-18 10:19:41,919 - app - INFO - Pipeline type: <class 'preprocessing_pipeline.PreprocessingPipeline'>
+2024-11-18 10:19:41,919 - app - INFO - Loaded feature names: ['Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity']
+2024-11-18 10:19:41,921 - app - INFO - Starting application on port 5000
+2024-11-18 10:20:05,735 - app - INFO - Input data shape: (1, 6)
+2024-11-18 10:20:05,735 - app - INFO - Input features: ['Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity']
+2024-11-18 10:20:05,746 - app - INFO - Prediction log: {'timestamp': '2024-11-18T10:20:05.746884', 'input_data': {'Economy (GDP per Capita)': 0.01, 'Family': 0.01, 'Health (Life Expectancy)': 0.01, 'Freedom': 0.02, 'Trust (Government Corruption)': 0.01, 'Generosity': 0.01}, 'prediction': 3.4381875138888893, 'success': True, 'error': None, 'client_ip': '127.0.0.1'}
+2024-11-18 10:21:04,611 - app - INFO - Input data shape: (1, 6)
+2024-11-18 10:21:04,612 - app - INFO - Input features: ['Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity']
+2024-11-18 10:21:04,621 - app - INFO - Prediction log: {'timestamp': '2024-11-18T10:21:04.621202', 'input_data': {'Economy (GDP per Capita)': 0.01, 'Family': 0.01, 'Health (Life Expectancy)': 1, 'Freedom': 0.02, 'Trust (Government Corruption)': 0.01, 'Generosity': 0.01}, 'prediction': 4.207730940476188, 'success': True, 'error': None, 'client_ip': '127.0.0.1'}
+2024-11-18 10:21:12,223 - app - INFO - Input data shape: (1, 6)
+2024-11-18 10:21:12,224 - app - INFO - Input features: ['Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity']
+2024-11-18 10:21:12,241 - app - INFO - Prediction log: {'timestamp': '2024-11-18T10:21:12.241271', 'input_data': {'Economy (GDP per Capita)': 0.01, 'Family': 0.01, 'Health (Life Expectancy)': 2, 'Freedom': 0.02, 'Trust (Government Corruption)': 0.01, 'Generosity': 0.01}, 'prediction': 4.207730940476188, 'success': True, 'error': None, 'client_ip': '127.0.0.1'}
+2024-11-18 10:21:22,731 - app - INFO - Input data shape: (1, 6)
+2024-11-18 10:21:22,731 - app - INFO - Input features: ['Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity']
+2024-11-18 10:21:22,740 - app - INFO - Prediction log: {'timestamp': '2024-11-18T10:21:22.740115', 'input_data': {'Economy (GDP per Capita)': 0.01, 'Family': 0.01, 'Health (Life Expectancy)': 2, 'Freedom': 1, 'Trust (Government Corruption)': 0.01, 'Generosity': 0.01}, 'prediction': 4.738892468253966, 'success': True, 'error': None, 'client_ip': '127.0.0.1'}
+2024-11-18 10:21:31,522 - app - INFO - Input data shape: (1, 6)
+2024-11-18 10:21:31,522 - app - INFO - Input features: ['Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity']
+2024-11-18 10:21:31,531 - app - INFO - Prediction log: {'timestamp': '2024-11-18T10:21:31.531403', 'input_data': {'Economy (GDP per Capita)': 1, 'Family': 0.01, 'Health (Life Expectancy)': 2, 'Freedom': 1, 'Trust (Government Corruption)': 0.01, 'Generosity': 0.01}, 'prediction': 5.614382593253964, 'success': True, 'error': None, 'client_ip': '127.0.0.1'}

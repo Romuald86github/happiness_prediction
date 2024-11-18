@@ -19,11 +19,29 @@ COPY requirements.txt /app/
 # Install dependencies and gunicorn
 RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
-# Copy the entire project
-COPY . /app/
+# Copy the project files maintaining the structure
+COPY app /app/app
+COPY src /app/src
+COPY models /app/models
+COPY config /app/config
+
+# Create necessary directories
+RUN mkdir -p /app/logs
+
+# Create a startup script to ensure correct Python path
+RUN echo '#!/bin/bash\n\
+export PYTHONPATH=/app\n\
+cd /app\n\
+exec gunicorn \
+    --bind 0.0.0.0:5000 \
+    --workers 4 \
+    --timeout 120 \
+    --preload \
+    "app.app:app"' > /app/start.sh && \
+    chmod +x /app/start.sh
 
 # Expose the port that the Flask app will run on
 EXPOSE 5000
 
-# Command to run the application with gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "120", "--preload", "app.app:app"]
+# Command to run the application
+CMD ["/app/start.sh"]
