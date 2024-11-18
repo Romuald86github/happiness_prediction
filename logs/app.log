@@ -1148,3 +1148,91 @@ Traceback (most recent call last):
 AttributeError: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
 
 2024-11-18 13:16:18,925 - app.app - ERROR - Failed to load model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+2024-11-18 13:21:38,135 - app.app - INFO - Loading model artifacts...
+2024-11-18 13:21:38,149 - app.app - INFO - Loading model artifacts...
+2024-11-18 13:21:38,195 - app.app - INFO - Loading model artifacts...
+2024-11-18 13:21:38,394 - app.app - INFO - Loading model artifacts...
+2024-11-18 13:21:38,582 - app.app - ERROR - Error loading model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+Traceback (most recent call last):
+  File "/app/app/app.py", line 68, in load_model_artifacts
+    pipeline = PreprocessingPipeline.load(app.config['PIPELINE_PATH'])
+  File "/app/src/preprocessing_pipeline.py", line 163, in load
+    return joblib.load(path)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 658, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 577, in _unpickle
+    obj = unpickler.load()
+  File "/usr/local/lib/python3.9/pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "/usr/local/lib/python3.9/pickle.py", line 1537, in load_stack_global
+    self.append(self.find_class(module, name))
+  File "/usr/local/lib/python3.9/pickle.py", line 1581, in find_class
+    return _getattribute(sys.modules[module], name)[0]
+  File "/usr/local/lib/python3.9/pickle.py", line 331, in _getattribute
+    raise AttributeError("Can't get attribute {!r} on {!r}"
+AttributeError: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+
+2024-11-18 13:21:38,590 - app.app - ERROR - Failed to load model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+2024-11-18 13:21:38,606 - app.app - ERROR - Error loading model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+Traceback (most recent call last):
+  File "/app/app/app.py", line 68, in load_model_artifacts
+    pipeline = PreprocessingPipeline.load(app.config['PIPELINE_PATH'])
+  File "/app/src/preprocessing_pipeline.py", line 163, in load
+    return joblib.load(path)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 658, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 577, in _unpickle
+    obj = unpickler.load()
+  File "/usr/local/lib/python3.9/pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "/usr/local/lib/python3.9/pickle.py", line 1537, in load_stack_global
+    self.append(self.find_class(module, name))
+  File "/usr/local/lib/python3.9/pickle.py", line 1581, in find_class
+    return _getattribute(sys.modules[module], name)[0]
+  File "/usr/local/lib/python3.9/pickle.py", line 331, in _getattribute
+    raise AttributeError("Can't get attribute {!r} on {!r}"
+AttributeError: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+
+2024-11-18 13:21:38,607 - app.app - ERROR - Failed to load model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+2024-11-18 13:21:38,635 - app.app - ERROR - Error loading model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+Traceback (most recent call last):
+  File "/app/app/app.py", line 68, in load_model_artifacts
+    pipeline = PreprocessingPipeline.load(app.config['PIPELINE_PATH'])
+  File "/app/src/preprocessing_pipeline.py", line 163, in load
+    return joblib.load(path)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 658, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 577, in _unpickle
+    obj = unpickler.load()
+  File "/usr/local/lib/python3.9/pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "/usr/local/lib/python3.9/pickle.py", line 1537, in load_stack_global
+    self.append(self.find_class(module, name))
+  File "/usr/local/lib/python3.9/pickle.py", line 1581, in find_class
+    return _getattribute(sys.modules[module], name)[0]
+  File "/usr/local/lib/python3.9/pickle.py", line 331, in _getattribute
+    raise AttributeError("Can't get attribute {!r} on {!r}"
+AttributeError: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+
+2024-11-18 13:21:38,635 - app.app - ERROR - Failed to load model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+2024-11-18 13:21:38,677 - app.app - ERROR - Error loading model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+Traceback (most recent call last):
+  File "/app/app/app.py", line 68, in load_model_artifacts
+    pipeline = PreprocessingPipeline.load(app.config['PIPELINE_PATH'])
+  File "/app/src/preprocessing_pipeline.py", line 163, in load
+    return joblib.load(path)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 658, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 577, in _unpickle
+    obj = unpickler.load()
+  File "/usr/local/lib/python3.9/pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "/usr/local/lib/python3.9/pickle.py", line 1537, in load_stack_global
+    self.append(self.find_class(module, name))
+  File "/usr/local/lib/python3.9/pickle.py", line 1581, in find_class
+    return _getattribute(sys.modules[module], name)[0]
+  File "/usr/local/lib/python3.9/pickle.py", line 331, in _getattribute
+    raise AttributeError("Can't get attribute {!r} on {!r}"
+AttributeError: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+
+2024-11-18 13:21:38,677 - app.app - ERROR - Failed to load model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>

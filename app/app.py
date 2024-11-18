@@ -1,3 +1,8 @@
+import os
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../src'))
+from preprocessing_pipeline import PreprocessingPipeline
+
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import pandas as pd
@@ -5,35 +10,22 @@ import numpy as np
 import joblib
 import logging
 from logging.handlers import RotatingFileHandler
-import os
-import sys
 from pathlib import Path
 from datetime import datetime
 import traceback
 
-# Set up project paths
-PROJECT_ROOT = Path(__file__).resolve().parents[1]  # Two levels up to project root
-SRC_DIR = PROJECT_ROOT / 'src'
-APP_DIR = PROJECT_ROOT / 'app'
-TEMPLATE_DIR = APP_DIR / 'templates'
-STATIC_DIR = APP_DIR / 'static'
-
-sys.path.insert(0, str(SRC_DIR))  # Ensure src is prioritized in import path
-
-
-
 from config import Config
-from preprocessing_pipeline import PreprocessingPipeline
 
-# Initialize Flask app with correct template and static folders
+# Initialize Flask app
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+TEMPLATE_DIR = PROJECT_ROOT / 'app' / 'templates'
+STATIC_DIR = PROJECT_ROOT / 'app' / 'static'
+
 app = Flask(__name__,
            template_folder=str(TEMPLATE_DIR),
            static_folder=str(STATIC_DIR))
 
-# Enable CORS
 CORS(app)
-
-# Load configuration
 config = Config()
 
 # Configure logging
@@ -60,17 +52,10 @@ def load_model_artifacts():
     """Load model and preprocessing pipeline"""
     try:
         app.logger.info("Loading model artifacts...")
-        
-        # Load model data
         model_data = joblib.load(app.config['MODEL_PATH'])
-        
-        # Load preprocessing pipeline
         pipeline = PreprocessingPipeline.load(app.config['PIPELINE_PATH'])
         
         app.logger.info("Model artifacts loaded successfully")
-        app.logger.info(f"Model type: {type(model_data['model'])}")
-        app.logger.info(f"Pipeline type: {type(pipeline)}")
-        
         return model_data['model'], model_data['feature_names'], pipeline
     except Exception as e:
         app.logger.error(f"Error loading model artifacts: {str(e)}\n{traceback.format_exc()}")
@@ -110,7 +95,6 @@ def log_prediction(data, prediction, success=True, error=None):
 # Load model artifacts at startup
 try:
     model, feature_names, pipeline = load_model_artifacts()
-    app.logger.info(f"Loaded feature names: {feature_names}")
 except Exception as e:
     app.logger.error(f"Failed to load model artifacts: {str(e)}")
     model = None
@@ -130,10 +114,8 @@ def health_check():
 def home():
     """Render home page"""
     if feature_names is None:
-        return render_template('error.html', 
-                             error="Model not loaded"), 503
-    return render_template('index.html', 
-                         feature_names=feature_names)
+        return render_template('error.html', error="Model not loaded"), 503
+    return render_template('index.html', feature_names=feature_names)
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -145,28 +127,18 @@ def predict():
         }), 503
     
     try:
-        # Get input data
         data = request.get_json()
         if not data:
             raise ValueError("No input data provided")
         
-        # Validate input
         validate_input(data, feature_names)
         
-        # Create DataFrame with proper feature ordering
         input_df = pd.DataFrame([{feature: float(data[feature]) 
                                 for feature in feature_names}])
         
-        app.logger.info(f"Input data shape: {input_df.shape}")
-        app.logger.info(f"Input features: {input_df.columns.tolist()}")
-        
-        # Transform data
         processed_data = pipeline.transform(input_df, is_single_input=True)
-        
-        # Make prediction
         prediction = model.predict(processed_data)[0]
         
-        # Log successful prediction
         log_prediction(data, prediction)
         
         return jsonify({
@@ -175,7 +147,6 @@ def predict():
         })
         
     except Exception as e:
-        # Log failed prediction
         log_prediction(
             data if 'data' in locals() else None,
             None,
@@ -206,16 +177,13 @@ def model_info():
 
 @app.errorhandler(404)
 def not_found_error(error):
-    return render_template('error.html', 
-                         error="Page not found"), 404
+    return render_template('error.html', error="Page not found"), 404
 
 @app.errorhandler(500)
 def internal_error(error):
     app.logger.error(f"Server error: {str(error)}\n{traceback.format_exc()}")
-    return render_template('error.html', 
-                         error="Internal server error"), 500
+    return render_template('error.html', error="Internal server error"), 500
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.logger.info(f"Starting application on port {port}")
     app.run(host='0.0.0.0', port=port)
