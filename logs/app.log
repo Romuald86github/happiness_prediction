@@ -1358,3 +1358,6 @@ Traceback (most recent call last):
 ModuleNotFoundError: No module named 'src'
 
 2024-11-18 14:15:31,429 - app - ERROR - Failed to load model artifacts: No module named 'src'
+2024-11-18 14:20:18,406 - app - INFO - Loading model artifacts...
+2024-11-18 14:20:18,527 - app - INFO - Model artifacts loaded successfully
+2024-11-18 14:20:45,785 - app - INFO - Prediction log: {'timestamp': '2024-11-18T14:20:45.785594', 'input_data': {'Economy (GDP per Capita)': 0.01, 'Family': 0.01, 'Health (Life Expectancy)': 0.01, 'Freedom': 0.01, 'Trust (Government Corruption)': 0.01, 'Generosity': 0.01}, 'prediction': 3.4381875138888893, 'success': True, 'error': None, 'client_ip': '127.0.0.1'}
