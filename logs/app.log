@@ -840,3 +840,83 @@ jinja2.exceptions.TemplateNotFound: error.html
 2024-11-17 20:58:04,430 - app - INFO - Input data shape: (1, 6)
 2024-11-17 20:58:04,430 - app - INFO - Input features: ['Economy (GDP per Capita)', 'Family', 'Health (Life Expectancy)', 'Freedom', 'Trust (Government Corruption)', 'Generosity']
 2024-11-17 20:58:04,442 - app - INFO - Prediction log: {'timestamp': '2024-11-17T20:58:04.442429', 'input_data': {'Economy (GDP per Capita)': 0.01, 'Family': 0.01, 'Health (Life Expectancy)': 0.01, 'Freedom': 0.01, 'Trust (Government Corruption)': 0.01, 'Generosity': 0.01}, 'prediction': 3.4381875138888893, 'success': True, 'error': None, 'client_ip': '127.0.0.1'}
+2024-11-18 05:55:37,532 - app.app - INFO - Loading model artifacts...
+2024-11-18 05:55:37,628 - app.app - INFO - Loading model artifacts...
+2024-11-18 05:55:37,711 - app.app - ERROR - Error loading model artifacts: No module named 'numpy._core'
+Traceback (most recent call last):
+  File "/app/app/app.py", line 63, in load_model_artifacts
+    model_data = joblib.load(app.config['MODEL_PATH'])
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 585, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 504, in _unpickle
+    obj = unpickler.load()
+  File "/usr/local/lib/python3.9/pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 342, in load_build
+    self.stack.append(array_wrapper.read(self))
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 187, in read
+    array = self.read_array(unpickler)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 121, in read_array
+    array = pickle.load(unpickler.file_handle)
+ModuleNotFoundError: No module named 'numpy._core'
+
+2024-11-18 05:55:37,713 - app.app - ERROR - Failed to load model artifacts: No module named 'numpy._core'
+2024-11-18 05:55:37,728 - app.app - INFO - Loading model artifacts...
+2024-11-18 05:55:37,758 - app.app - ERROR - Error loading model artifacts: No module named 'numpy._core'
+Traceback (most recent call last):
+  File "/app/app/app.py", line 63, in load_model_artifacts
+    model_data = joblib.load(app.config['MODEL_PATH'])
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 585, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 504, in _unpickle
+    obj = unpickler.load()
+  File "/usr/local/lib/python3.9/pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 342, in load_build
+    self.stack.append(array_wrapper.read(self))
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 187, in read
+    array = self.read_array(unpickler)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 121, in read_array
+    array = pickle.load(unpickler.file_handle)
+ModuleNotFoundError: No module named 'numpy._core'
+
+2024-11-18 05:55:37,759 - app.app - ERROR - Failed to load model artifacts: No module named 'numpy._core'
+2024-11-18 05:55:37,770 - app.app - INFO - Loading model artifacts...
+2024-11-18 05:55:37,876 - app.app - ERROR - Error loading model artifacts: No module named 'numpy._core'
+Traceback (most recent call last):
+  File "/app/app/app.py", line 63, in load_model_artifacts
+    model_data = joblib.load(app.config['MODEL_PATH'])
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 585, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 504, in _unpickle
+    obj = unpickler.load()
+  File "/usr/local/lib/python3.9/pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 342, in load_build
+    self.stack.append(array_wrapper.read(self))
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 187, in read
+    array = self.read_array(unpickler)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 121, in read_array
+    array = pickle.load(unpickler.file_handle)
+ModuleNotFoundError: No module named 'numpy._core'
+
+2024-11-18 05:55:37,877 - app.app - ERROR - Failed to load model artifacts: No module named 'numpy._core'
+2024-11-18 05:55:37,888 - app.app - ERROR - Error loading model artifacts: No module named 'numpy._core'
+Traceback (most recent call last):
+  File "/app/app/app.py", line 63, in load_model_artifacts
+    model_data = joblib.load(app.config['MODEL_PATH'])
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 585, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 504, in _unpickle
+    obj = unpickler.load()
+  File "/usr/local/lib/python3.9/pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 342, in load_build
+    self.stack.append(array_wrapper.read(self))
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 187, in read
+    array = self.read_array(unpickler)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 121, in read_array
+    array = pickle.load(unpickler.file_handle)
+ModuleNotFoundError: No module named 'numpy._core'
+
+2024-11-18 05:55:37,888 - app.app - ERROR - Failed to load model artifacts: No module named 'numpy._core'
