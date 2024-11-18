@@ -1261,3 +1261,6 @@ Traceback (most recent call last):
 AttributeError: Can't get attribute 'PreprocessingPipeline' on <module 'gunicorn.__main__' from '/usr/local/lib/python3.9/site-packages/gunicorn/__main__.py'>
 
 2024-11-18 13:37:22,033 - app.app - ERROR - Failed to load model artifacts: Can't get attribute 'PreprocessingPipeline' on <module 'gunicorn.__main__' from '/usr/local/lib/python3.9/site-packages/gunicorn/__main__.py'>
+2024-11-18 13:56:08,144 - app - INFO - Loading model artifacts...
+2024-11-18 13:56:08,284 - app - INFO - Model artifacts loaded successfully
+2024-11-18 13:56:38,118 - app - INFO - Prediction log: {'timestamp': '2024-11-18T13:56:38.118501', 'input_data': {'Economy (GDP per Capita)': 0.01, 'Family': 0.01, 'Health (Life Expectancy)': 0.01, 'Freedom': 0.01, 'Trust (Government Corruption)': 0.01, 'Generosity': 0.01}, 'prediction': 3.4381875138888893, 'success': True, 'error': None, 'client_ip': '127.0.0.1'}
