@@ -3,8 +3,6 @@ FROM python:3.9-slim
 ENV PYTHONPATH=/app:/app/src \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    FLASK_APP=app/app.py \
-    FLASK_ENV=production \
     MODEL_PATH=/app/models/best_model.pkl \
     PIPELINE_PATH=/app/models/preprocessing_pipeline.pkl
 
@@ -12,11 +10,10 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
-    curl \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt gunicorn
+COPY streamlit_requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
@@ -26,11 +23,8 @@ RUN groupadd -r appuser && useradd -r -g appuser appuser \
 
 USER appuser
 
-EXPOSE 5000
+EXPOSE 8501
 
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:5000/health || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health || exit 1
 
-# Modified to use wsgi.py
-COPY wsgi.py .
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "wsgi:app"]
+CMD ["streamlit", "run", "streamlit_app/streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
