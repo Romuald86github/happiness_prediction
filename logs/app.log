@@ -1330,3 +1330,31 @@ Traceback (most recent call last):
 AttributeError: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
 
 2024-11-18 14:09:43,676 - app.app - ERROR - Failed to load model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+2024-11-18 14:14:00,265 - app.app - INFO - Loading model artifacts...
+2024-11-18 14:14:00,401 - app.app - ERROR - Error loading model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+Traceback (most recent call last):
+  File "/app/app/app.py", line 61, in load_model_artifacts
+    pipeline = joblib.load(app.config['PIPELINE_PATH'])
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 658, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python3.9/site-packages/joblib/numpy_pickle.py", line 577, in _unpickle
+    obj = unpickler.load()
+  File "/usr/local/lib/python3.9/pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "/usr/local/lib/python3.9/pickle.py", line 1537, in load_stack_global
+    self.append(self.find_class(module, name))
+  File "/usr/local/lib/python3.9/pickle.py", line 1581, in find_class
+    return _getattribute(sys.modules[module], name)[0]
+  File "/usr/local/lib/python3.9/pickle.py", line 331, in _getattribute
+    raise AttributeError("Can't get attribute {!r} on {!r}"
+AttributeError: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+
+2024-11-18 14:14:00,401 - app.app - ERROR - Failed to load model artifacts: Can't get attribute 'PreprocessingPipeline' on <module '__main__' from '/usr/local/bin/gunicorn'>
+2024-11-18 14:15:31,428 - app - INFO - Loading model artifacts...
+2024-11-18 14:15:31,428 - app - ERROR - Error loading model artifacts: No module named 'src'
+Traceback (most recent call last):
+  File "/workspaces/happiness_prediction/app/app.py", line 57, in load_model_artifacts
+    from src.preprocessing_pipeline import PreprocessingPipeline
+ModuleNotFoundError: No module named 'src'
+
+2024-11-18 14:15:31,429 - app - ERROR - Failed to load model artifacts: No module named 'src'
