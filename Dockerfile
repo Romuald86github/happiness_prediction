@@ -4,32 +4,69 @@ FROM python:3.9-slim
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    FLASK_APP=/app/app/app.py \
+    FLASK_APP=app/app.py \
     FLASK_RUN_HOST=0.0.0.0 \
     MODEL_PATH=/app/models/best_model.pkl \
     PIPELINE_PATH=/app/models/preprocessing_pipeline.pkl \
-    PYTHONPATH=/app:/app/src
+    PYTHONPATH=/app
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Copy requirements file to the container
-COPY requirements.txt /app/
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies and gunicorn
+# Copy requirements first for better caching
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
-# Create necessary directories
-RUN mkdir -p /app/logs /app/models
+# Create all necessary directories
+RUN mkdir -p \
+    app/static/css \
+    app/static/js \
+    app/templates \
+    config \
+    data \
+    experiments \
+    logs \
+    models \
+    results \
+    scripts \
+    src
 
-# Copy the project files
-COPY . /app/
+# Copy project files maintaining structure
+COPY app/static/css/* app/static/css/
+COPY app/static/js/* app/static/js/
+COPY app/templates/* app/templates/
+COPY app/app.py app/
+COPY config/* config/
+COPY data/*.csv data/
+COPY models/*.pkl models/
+COPY src/* src/
+COPY scripts/* scripts/
 
-# Make sure the PreprocessingPipeline is in the correct state
-RUN python3 -c "import sys; sys.path.insert(0, '/app'); from src.preprocessing_pipeline import PreprocessingPipeline; print('Module imports verified')"
+# Create .gitignore to prevent __pycache__ issues
+RUN echo "**/__pycache__" > .gitignore
 
-# Expose the port that the Flask app will run on
+# Set permissions
+RUN chmod -R 755 /app \
+    && chmod -R 777 /app/logs \
+    && chmod -R 777 /app/models \
+    && chmod -R 777 /app/data
+
+# Verify critical imports and paths
+RUN python3 -c "import sys; \
+    from src.preprocessing_pipeline import PreprocessingPipeline; \
+    from src.model_trainer import ModelTrainer; \
+    from app.app import app; \
+    from src.config import Config; \
+    from src.helpers import setup_logging; \
+    print('All modules verified successfully')"
+
+# Expose port
 EXPOSE 5000
 
-# Command to run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--preload", "--pythonpath", "/app:/app/src", "app.app:app"]
+# Start gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "120", "--preload", "app.app:app"]
