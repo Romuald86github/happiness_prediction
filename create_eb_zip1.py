@@ -10,7 +10,8 @@ def create_eb_zip():
         'streamlit_requirements.txt',
         'streamlit_app/streamlit_app1.py',
         'src/',
-        'models/'
+        'models/',
+        'data/'
     ]
     
     with zipfile.ZipFile(output_path, 'w') as zipf:
