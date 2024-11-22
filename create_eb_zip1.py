@@ -3,7 +3,7 @@ import zipfile
 
 def create_eb_zip():
     # Save in current directory
-    output_path = 'eb_app.zip1'
+    output_path = 'eb_app1.zip'
     
     files_to_zip = [
         'Dockerfile',
