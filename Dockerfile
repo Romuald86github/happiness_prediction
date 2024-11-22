@@ -4,7 +4,9 @@ ENV PYTHONPATH=/app:/app/src \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     MODEL_PATH=/app/models/best_model.pkl \
-    PIPELINE_PATH=/app/models/preprocessing_pipeline.pkl \
+    PIPELINE_PATH=/app/models/preprocessing_pipeline.pkl
+    DATA_PATH=/app/data/preprocessed_data.csv
+
     
 
 WORKDIR /app
