@@ -103,6 +103,7 @@ git clone https://github.com/Romuald86github/happiness_prediction.git
 - initialise conda
 ````bash
 conda init
+```
 
 - create a vitual environment
 ```bash
