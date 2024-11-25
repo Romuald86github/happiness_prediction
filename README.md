@@ -101,7 +101,7 @@ This methodical approach ensures a robust, maintainable solution that can reliab
 git clone https://github.com/Romuald86github/happiness_prediction.git
 ```
 - initialise conda
-````bash
+```bash
 conda init
 ```
 
