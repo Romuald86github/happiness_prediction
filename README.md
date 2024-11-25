@@ -95,6 +95,16 @@ This methodical approach ensures a robust, maintainable solution that can reliab
 ## how to reproduce the work
 
 1. **setting up the environment**
+   
 - clone the repo
 ```bash
-repo
+git clone https://github.com/Romuald86github/happiness_prediction.git
+
+- create a vitual environment
+````bash
+conda init
+```bash
+conda create -n env
+```bash
+conda activate env
+
