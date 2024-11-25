@@ -150,11 +150,20 @@ python src/model_trainer.py
 
 4. **run the model deployment**
 
-- run the app without docker
+- first: run the app without docker
 ```bash
 streamlit_app/streamlit_app1.py
 ```
 - access the app at http://127.0.0.1:8501/ (you can navigate with the sidebar to monitor the datadrift and model performance)
+
+- second: run the app with docker
+```bash
+docker build -t happy .
+```
+```bash
+docker run -p 5000:5000 happy
+```
+- the deployed containerised (docker) app to AWS elastic beanstalk can be accessed at http://appy-env.eba-pukmekqi.eu-north-1.elasticbeanstalk.com/
 
 
 
