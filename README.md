@@ -100,11 +100,19 @@ This methodical approach ensures a robust, maintainable solution that can reliab
 ```bash
 git clone https://github.com/Romuald86github/happiness_prediction.git
 
-- create a vitual environment
+- initialise conda
 ````bash
 conda init
+
+- create a vitual environment
 ```bash
 conda create -n env
+
+- activate the environment 
 ```bash
 conda activate env
+
+
+
+
 
