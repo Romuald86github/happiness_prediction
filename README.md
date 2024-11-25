@@ -107,10 +107,15 @@ conda init
 - create a vitual environment
 ```bash
 conda create -n env
+```
 
 - activate the environment 
 ```bash
 conda activate env
+```
+
+
+
 
 
 
