@@ -90,3 +90,11 @@ The project follows industry best practices in ML development:
    - Data drift detection
 
 This methodical approach ensures a robust, maintainable solution that can reliably predict happiness scores and provide valuable insights for policy-making.
+
+
+## how to reproduce the work
+
+1. **setting up the environment**
+- clone the repo
+```bash
+repo
