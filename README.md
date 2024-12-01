@@ -119,7 +119,7 @@ conda create -n env
 conda activate env
 ```
 
-- install the depedencies
+- install the dependencies
 
 ```bash
 pip install -r streamlit_requirements.txt
