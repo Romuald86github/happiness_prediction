@@ -119,6 +119,12 @@ conda create -n env
 conda activate env
 ```
 
+- install the depedencies
+
+```bash
+pip install -r streamlit_requirements.txt
+```
+
 2. **create and export a flask secret**
 
 ```bash
